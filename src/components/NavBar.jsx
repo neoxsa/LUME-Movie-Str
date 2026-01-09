@@ -27,7 +27,7 @@ function NavBar() {
     ]
 
     return (
-        <nav className='p-5 mt-12'>
+        <nav className='p-5 mt-10'>
             <div className='flex justify-evenly items-center'>
                 <div className='flex items-center'>
                     <img src={logo} alt="logo" className='w-42 h-15' />
@@ -45,11 +45,11 @@ function NavBar() {
                     </ul>
                 </div>
                 <div className='flex gap-5'>
-                    <button className='border-[#df2144] border bg-black/10 rounded-lg px-4 py-2 font-medium text-lg'>
+                    <button className='border-[#df2144] border bg-black/10 rounded-lg px-4 py-2 font-medium text-lg cursor-pointer'>
                         Log In
                     </button>
                     <button
-                        className='bg-[#df2144] px-4 py-2 font-medium text-lg rounded-lg'
+                        className='bg-[#df2144] px-4 py-2 font-medium text-lg rounded-lg cursor-pointer'
                     >
                         Sign Up
                     </button>
