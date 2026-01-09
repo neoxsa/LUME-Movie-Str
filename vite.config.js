@@ -6,12 +6,14 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [
-    tailwindcss(),react()],
+    tailwindcss(), react()],
   resolve: {
     alias: {
       '#components': resolve(dirname(fileURLToPath(import.meta.url)), './src/components'),
       '#pages': resolve(dirname(fileURLToPath(import.meta.url)), './src/pages'),
       '#assets': resolve(dirname(fileURLToPath(import.meta.url)), './src/assets'),
+      '#api': resolve(dirname(fileURLToPath(import.meta.url)), './src/api'),
+      '#app': resolve(dirname(fileURLToPath(import.meta.url)), './src/app'),     
     },
   },
 })
