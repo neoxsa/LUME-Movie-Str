@@ -16,12 +16,18 @@ export const apiSlice = createApi({
     }),
     endpoints: (builder) => ({
 
-        // All Trending
+        // All Trending Movies
         getAllTrending: builder.query({
             query: () => `trending/all/week`
+        }),
+
+        // Get NowPlaying
+        getNowPlayingMovies: builder.query({
+            query: () => 'movie/now_playing',
         })
+
     })
 })
 
-export const { useGetAllTrendingQuery} = apiSlice
+export const { useGetAllTrendingQuery, useGetNowPlayingMoviesQuery } = apiSlice
 

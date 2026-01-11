@@ -27,11 +27,16 @@ function NavBar() {
     ]
 
     return (
-        <nav className='p-5 mt-10'>
+        <nav className='absolute z-50 top-4 left-1/2 -translate-x-1/2 w-[95%] p-2
+         bg-black/30 backdrop-blur-xl
+         border border-white/15
+         shadow-lg shadow-black/40
+         rounded-2xl transition-all duration-300'>
             <div className='flex justify-evenly items-center'>
                 <div className='flex items-center'>
-                    <img src={logo} alt="logo" className='w-42 h-15' />
-                    {/* <h1 className='text-xl font-bold'>LUME</h1> */}
+                    <Link to='/'>
+                        <img src={logo} alt="logo" className='w-42 h-15' />
+                    </Link>
                 </div>
                 <div className='flex items-center'>
                     <ul className='flex items-center gap-5'>
