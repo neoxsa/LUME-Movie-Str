@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import logo from '#assets/logo.webp'
 
 function NavBar() {
@@ -27,40 +27,49 @@ function NavBar() {
     ]
 
     return (
-        <nav className='absolute z-50 top-4 left-1/2 -translate-x-1/2 w-[95%] p-2
-         bg-black/30 backdrop-blur-xl
-         border border-white/15
-         shadow-lg shadow-black/40
-         rounded-2xl transition-all duration-300'>
-            <div className='flex justify-evenly items-center'>
-                <div className='flex items-center'>
-                    <Link to='/'>
-                        <img src={logo} alt="logo" className='w-42 h-15' />
-                    </Link>
-                </div>
-                <div className='flex items-center'>
-                    <ul className='flex items-center gap-5'>
-                        {
-                            navItems.map((item) => (
-                                <li className='font-medium text-lg hover:border-b-3 border-[#df2144]' key={item.id}>
-                                    <Link to={item.to} className='text-white hover:text-gray-300'>{item.label}</Link>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </div>
-                <div className='flex gap-5'>
-                    <button className='border-[#df2144] border bg-black/10 rounded-lg px-4 py-2 font-medium text-lg cursor-pointer'>
+        <nav
+            className=" fixed z-50 top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl px-6 py-3  bg-black/40 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/40 rounded-2xl transition-all duration-300"
+        >
+            <div className="flex items-center justify-between">
+                <Link to="/" className="flex items-center">
+                    <img src={logo} alt="logo" className="h-10 w-auto" />
+                </Link>
+
+                {/* Nav links */}
+                <ul className="hidden md:flex items-center gap-8">
+                    {navItems.map((item) => (
+                        <li key={item.id} className="relative group">
+                            <NavLink
+                                to={item.to}
+                                className={({ isActive }) => `text-base font-medium transition-colors duration-200 group-hover:text-white ${isActive ? 'font-bold text-red-400/90' : "text-white/90"}`}
+                            >
+                                {item.label}
+                            </NavLink>
+
+                            <span
+                                className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#df2144] transition-all duration-300 group-hover:w-full"
+                            />
+                        </li>
+                    ))}
+                </ul>
+                
+                {/* Buttons */}
+                <div className="flex items-center gap-3">
+                    <button
+                        className=" hidden sm:inline-flex px-4 py-2  text-white/90 border border-white/20  bg-white/5 rounded-lg  hover:bg-white/10 transition text-sm font-medium"
+                    >
                         Log In
                     </button>
+
                     <button
-                        className='bg-[#df2144] px-4 py-2 font-medium text-lg rounded-lg cursor-pointer'
+                        className=" px-4 py-2 bg-[#df2144]  text-black rounded-lg font-semibold text-sm  hover:bg-[#c81c3b] transition"
                     >
                         Sign Up
                     </button>
                 </div>
             </div>
         </nav>
+
     )
 }
 
