@@ -1,41 +1,85 @@
 import React from 'react'
 import { useGetAllTrendingQuery } from '#api/tmdbApi.js'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+
 
 function HeroSection() {
 
     const { data } = useGetAllTrendingQuery();
 
-    const trendingMovies = data?.results.slice(0, 5) || [];
+    const trendingMovies = data?.results|| [];
     console.log(trendingMovies);
 
     return (
-        <section className='relative flex gap-4'>
-            <div className='w-full h-auto'>
-                <img
-                    key={trendingMovies[0]?.id}
-                    src={`https://image.tmdb.org/t/p/w1280/${trendingMovies[0]?.backdrop_path}`}
-                    alt={trendingMovies[0]?.title}
-                    className='object-cover w-full brightness-65'
-                />
-            </div>
-            <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-left flex gap-5 flex-col'>
-                <div>
-                    <h1 className='text-5xl font-bold mb-4 text-red-400'>{trendingMovies[0]?.original_name}</h1>
-                    <p className='text-gray-400 font-bold text-2xl'>{trendingMovies[0]?.media_type}</p>
-                    <p className='text-xl'>{trendingMovies[0]?.overview}</p>
+        <section className="relative min-h-[70vh] w-full overflow-hidden">
+            <div className="w-full h-full">
+                {!trendingMovies.length ? null : (
+                    <Swiper
+                        modules={[Pagination, Autoplay, EffectFade, Navigation]}
+                        effect="fade"
+                        fadeEffect={{ crossFade: true }}
+                        autoplay={{
+                            delay: 5000,
+                            disableOnInteraction: false,
+                        }}
+                        pagination={{
+                            clickable: true,
+                            dynamicBullets: true,
+                        }}
+                        spaceBetween={20}
+                        slidesPerView={1}
+                        loop={true}
+                    >
+                        {trendingMovies.map((movie) => (
+                            <SwiperSlide key={movie.id} className="relative">
+                                {/* Background image */}
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w1280/${movie?.backdrop_path}`}
+                                    alt={movie?.name || movie?.title}
+                                    className="w-full h-[70vh] xl:h-[90vh] object-cover"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
 
-                </div>
-                <div className='flex gap-5'>
-                    <span className='text-xl'>{trendingMovies[0]?.vote_average}</span>
-                    <span>{trendingMovies[0]?.first_air_date}</span>
-                </div>
-                <div>
-                    <button className='bg-red-400 px-5 py-2 rounded text-xl font-bold text-black'>
-                        <span>Watch Now</span>
-                    </button>
-                </div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+
+                                {/* Content */}
+                                <div className="absolute inset-0 flex items-center">
+                                    <div className="px-6 md:px-16 max-w-2xl text-white space-y-4 ">
+                                        <h1 className="text-3xl md:text-5xl font-extrabold text-red-400 leading-tight">
+                                            {movie?.name || movie?.original_name || movie?.title}
+                                        </h1>
+
+                                        <div className="flex items-center gap-4 text-sm md:text-base text-gray-300">
+                                            <span className="font-semibold">
+                                                ⭐ {movie?.vote_average?.toFixed(1)}
+                                            </span>
+                                            <span className="uppercase tracking-wide">
+                                                {movie?.media_type}
+                                            </span>
+                                        </div>
+
+                                        <p className="text-sm md:text-lg text-gray-200 line-clamp-4">
+                                            {movie?.overview}
+                                        </p>
+
+                                        <button className="mt-4 inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 transition px-6 py-3 rounded-lg text-black font-bold cursor-pointer">
+                                            Watch Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                )}
             </div>
         </section>
+
     )
 }
 
