@@ -1,33 +1,46 @@
-import { Clock, Star } from 'lucide-react'
-import React from 'react'
+import { Clock, Star } from "lucide-react"
+import React, { memo } from "react"
 
-
-function MovieCard({
-    className = "",
-    poster,
-    title,
-    rating,
-    date,
-    overview,
-
+const MovieCard = memo(function MovieCard({
+  className = "",
+  poster,
+  title,
+  rating,
+  date,
 }) {
+  return (
+    <article
+      className={`w-full max-w-[220px] md:max-w-[260px] ${className}`}
+    >
+      {/* Poster */}
+      <div className="relative overflow-hidden rounded-2xl">
+        <img
+          src={poster}
+          alt={title}
+          loading="lazy"
+          className="aspect-[2/3] w-full object-cover transition-transform duration-300 hover:scale-105"
+        />
 
-    return (
-        <section className={`w-fit  ${className}`}>
-            <div>
-                <img src={poster} alt={title} className='object-cover rounded-t-2xl' />
-                <p className='inline-flex justify-between items-center bg-gray-700 w-full px-5 py-2 rounded-b-2xl'>
-                    <span className='inline-flex gap-2'>
-                        <Star className='text-amber-300' />{rating}</span>
-                    <span className='inline-flex gap-2 text-white/90 justify-self-end'>
-                        <Clock className='text-red-300' />
-                        {date}
-                    </span>
-                </p>
-            </div>
-            <h1 className='text-center text-lg font-medium m-1'>{title}</h1>
-        </section>
-    )
-}
+        {/* Content */}
+        <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center bg-black/70 px-4 py-2 text-sm backdrop-blur">
+          <span className="flex items-center gap-1 text-amber-300">
+            <Star size={14} />
+            {rating}
+          </span>
+
+          <span className="flex items-center gap-1 text-white/80">
+            <Clock size={14} />
+            {date}
+          </span>
+        </div>
+      </div>
+
+      {/* Title */}
+      <h3 className="mt-2 line-clamp-2 text-center text-sm md:text-base font-medium text-white">
+        {title}
+      </h3>
+    </article>
+  )
+})
 
 export default MovieCard
