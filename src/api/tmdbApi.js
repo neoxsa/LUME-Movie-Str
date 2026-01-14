@@ -21,13 +21,13 @@ export const apiSlice = createApi({
             query: () => `trending/all/week`
         }),
 
-        // Get NowPlaying
-        getNowPlayingMovies: builder.query({
-            query: () => 'movie/now_playing',
-        })
+        // Discover Movies
+        getDiscoverMovies: builder.query({
+            query: () => `discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`
+        }),
 
     })
 })
 
-export const { useGetAllTrendingQuery, useGetNowPlayingMoviesQuery } = apiSlice
+export const { useGetAllTrendingQuery, useGetDiscoverMoviesQuery } = apiSlice
 
