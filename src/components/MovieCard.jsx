@@ -10,7 +10,7 @@ const MovieCard = memo(function MovieCard({
 }) {
   return (
     <article
-      className={`w-full max-w-55 md:max-w-65 ${className}`}
+      className={`w-full max-w-55 md:max-w-65 cursor-pointer ${className}`}
     >
       {/* Poster */}
       <div className="relative overflow-hidden rounded-2xl">
