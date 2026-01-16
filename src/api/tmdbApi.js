@@ -26,8 +26,18 @@ export const apiSlice = createApi({
             query: () => `discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`
         }),
 
+        // Movies Details By ID
+        getMoviesByID: builder.query({
+            query: (movie_id) => `movie/${movie_id}`
+        }),
+        
+        // TV Shows Details By D
+        getTVShowsByID: builder.query({
+            query: (series_id) => `tv/${series_id}`
+        })
+
     })
 })
 
-export const { useGetAllTrendingQuery, useGetDiscoverMoviesQuery } = apiSlice
+export const { useGetAllTrendingQuery, useGetDiscoverMoviesQuery, useGetMoviesByIDQuery, useGetTVShowsByIDQuery } = apiSlice
 
