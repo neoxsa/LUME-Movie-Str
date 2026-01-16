@@ -19,13 +19,13 @@ function MoviesSlider({
 
 
   useEffect(() => {
-  if (swiperRef.current && swiperRef.current.swiper) {
-    swiperRef.current.swiper.params.navigation.nextEl = nextButtonRef.current;
-    swiperRef.current.swiper.params.navigation.prevEl = prevButtonRef.current;
-    swiperRef.current.swiper.navigation.init();
-    swiperRef.current.swiper.navigation.update();
-  }
-}, []);
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.params.navigation.nextEl = nextButtonRef.current;
+      swiperRef.current.swiper.params.navigation.prevEl = prevButtonRef.current;
+      swiperRef.current.swiper.navigation.init();
+      swiperRef.current.swiper.navigation.update();
+    }
+  }, []);
 
   return (
     <section className="w-full px-4 md:px-25 py-6 relative">
@@ -63,7 +63,7 @@ function MoviesSlider({
         {movies.map((movie) => (
           <SwiperSlide key={movie.id}>
             <MovieCard
-              title={movie?.title || movie?.original_name || movie.name}
+              title={movie.name || movie?.original_name || movie?.title}
               date={
                 movie.first_air_date ?
                   date(movie?.first_air_date).toLocaleDateString("en-us", {
