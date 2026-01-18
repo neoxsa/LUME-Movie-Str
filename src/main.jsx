@@ -5,15 +5,16 @@ import App from './App.jsx'
 import { Provider } from 'react-redux'
 import store from '#app/store.js'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import {Home, Movies } from '#pages/index.js'
+import {Home, Movies, DetailView, TVShows, Contact } from '#pages/index.js'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />} >
       <Route index element={<Home />} />
       <Route path='/movies' element={<Movies />} />
-      {/* <Route path='/tv-shows' element={<TVShows />} />
-      <Route path='/contact' element={<Contact />} /> */}
+      <Route path='/watch/:id' element={<DetailView />} />
+      <Route path='/tv-shows' element={<TVShows />} />
+      <Route path='/contact' element={<Contact />} />
     </Route>
   )
 )
