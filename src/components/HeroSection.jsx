@@ -35,6 +35,10 @@ function HeroSection() {
                                     clickable: true,
                                     dynamicBullets: true,
                                 }}
+                                navigation={{
+                                    clickable: true,
+                                   
+                                }}
                                 spaceBetween={20}
                                 slidesPerView={1}
                                 loop={true}
