@@ -10,6 +10,7 @@ const MovieCard = memo(function MovieCard({
 }) {
   return (
     <article
+    
       className={`w-full max-w-55 md:max-w-65 cursor-pointer ${className}`}
     >
       {/* Poster */}
@@ -18,6 +19,7 @@ const MovieCard = memo(function MovieCard({
           src={poster}
           alt={title}
           loading="lazy"
+          decoding="async"
           className="aspect-2/3 w-full object-cover transition-transform duration-300 hover:scale-105"
         />
 
