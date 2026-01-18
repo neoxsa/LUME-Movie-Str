@@ -11,7 +11,7 @@ function HeroSkeleton() {
 
                         {/* Button */}
                         <div className="mt-4 h-10 w-32 rounded-xl bg-slate-700 animate-pulse" />
-                    </div>
+                    </div>  
                 </div>
             </div>
         </div>
