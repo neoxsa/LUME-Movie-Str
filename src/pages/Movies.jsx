@@ -2,14 +2,24 @@ import React from 'react'
 import { useGetDiscoverMoviesQuery } from '#api/tmdbApi';
 import MovieCard from '#components/MovieCard';
 
-
 function Movies() {
+  const [page, setPage] = React.useState(1);
 
-  const { data: allMoviesData, isLoading, isError, error } = useGetDiscoverMoviesQuery();
+  const { data: allMoviesData, isLoading, isError, error } = useGetDiscoverMoviesQuery(page);
+
   const allMovies = allMoviesData?.results ?? [];
 
   console.log("All Movies:", allMovies);
 
+  const handleNextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  }
+
+  const handlePreviousPage = () => {
+    if (page > 1) {
+      setPage((prevPage) => prevPage - 1);
+    }
+  }
 
   return (
     <>
@@ -38,6 +48,25 @@ function Movies() {
               />
             ))
           )}
+        </div>
+
+        {/* Pagination Controls */}
+        <div className="flex justify-center space-x-4 my-4">
+          <button
+            onClick={handlePreviousPage}
+            className="px-4 py-2 bg-red-500 text-white cursor-pointer rounded disabled:opacity-50"
+            disabled={page === 1}>
+            Previous
+          </button>
+
+          <span className="px-4 py-2 bg-gray-200 text-gray-700 rounded">
+            Page {page}
+          </span>
+          <button
+            onClick={handleNextPage}
+            className="px-4 py-2 bg-red-500 text-white cursor-pointer rounded">
+            Next
+          </button>
         </div>
       </section>
     </>
