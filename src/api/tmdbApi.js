@@ -22,12 +22,12 @@ export const apiSlice = createApi({
 
         // Discover Movies
         getDiscoverMovies: builder.query({
-            query: () => `discover/movie`
+            query: (page_no) => `discover/movie?include_adult=false&include_video=false&language=en-US&page=${page_no}&sort_by=popularity.desc`
         }),
 
         // Discover TV Shows
         getDiscoverTVShows: builder.query({
-            query: () => `discover/tv`
+            query: (page_no) => `discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=${page_no}&sort_by=popularity.desc`
         }),
 
         // Movies Details By ID
