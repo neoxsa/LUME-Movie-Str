@@ -7,7 +7,7 @@ export const apiSlice = createApi({
         baseUrl: `https://api.themoviedb.org/3/`,
 
         prepareHeaders: (headers) => {
-            headers.set('Authorization', `Bearer ${String(import.meta.env.VITE_TMBD_API_TOKEN)}`);
+            headers.set('Authorization', `Bearer ${String(import.meta.env.VITE_TMDB_API_TOKEN)}`);
             headers.set('Accept', 'application/json');
 
             return headers;
@@ -35,23 +35,23 @@ export const apiSlice = createApi({
             query: (movie_id) => `movie/${movie_id}`
         }),
 
-        // TV Shows Details By D
+        // TV Shows Details By ID
         getTVShowsByID: builder.query({
             query: (series_id) => `tv/${series_id}`
-        }),
+        }), 
 
         // Movie Trailer Video
         getMovieTrailer: builder.query({
-            query: (series_id) => `tv/${series_id}/videos`
+            query: (series_id) => `movie/${series_id}/videos`
         }),
 
         // TV Shows Trailer Video
         getTVShowTrailer: builder.query({
-            query: (series_id,season_number)=> `https://api.themoviedb.org/3/tv/${series_id}/season/${season_number}/videos`
+            query: ({series_id, season_number}) => `tv/${series_id}/season/${season_number}/videos`
         })
 
     })
 })
 
-export const { useGetAllTrendingQuery, useGetDiscoverMoviesQuery, useGetMoviesByIDQuery, useGetTVShowsByIDQuery, useGetMovieTrailerQuery } = apiSlice
+export const { useGetAllTrendingQuery, useGetDiscoverMoviesQuery, useGetMoviesByIDQuery, useGetTVShowsByIDQuery, useGetMovieTrailerQuery, useGetDiscoverTVShowsQuery, useGetTVShowTrailerQuery } = apiSlice
 
