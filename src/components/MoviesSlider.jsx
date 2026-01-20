@@ -6,14 +6,19 @@ import "swiper/css"
 import "swiper/css/navigation"
 import "../index.css"
 import { ArrowBigLeftDash, ArrowBigRightDash } from "lucide-react"
+import MovieCardSkeleton from "#components/Skeleton/MovieCardSkeleton"
+import { useNavigate } from "react-router-dom"
 
 function MoviesSlider({
   title,
-  movies
+  movies,
+  btnClickAction
 }) {
   const swiperRef = useRef(null);
   const prevButtonRef = useRef(null);
   const nextButtonRef = useRef(null);
+
+  const navigate = useNavigate();
 
   const date = (dateString) => new Date(dateString);
 
@@ -60,6 +65,18 @@ function MoviesSlider({
           },
         }}
       >
+        {/* Skeleton loading */}
+        {movies.length === 0 && (
+          <>
+            {[...Array(6)].map((_, index) => (
+              <SwiperSlide key={index}>
+                <MovieCardSkeleton />
+              </SwiperSlide>
+            ))}
+          </>
+        )}
+
+        {/* Movies */}
         {movies.map((movie) => (
           <SwiperSlide key={movie.id}>
             <MovieCard
@@ -82,10 +99,12 @@ function MoviesSlider({
 
       <div className="flex w-full justify-center items-center">
         <button className="mt-4 px-6 py-2 cursor-pointer bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors"
+          onClick={() => navigate(btnClickAction)}
         >
           Show All
         </button>
       </div>
+
     </section>
   )
 }
