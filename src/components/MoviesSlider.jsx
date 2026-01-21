@@ -80,9 +80,10 @@ function MoviesSlider({
         {movies.map((movie) => (
           <SwiperSlide key={movie.id}>
             <MovieCard
-              title={movie.name || movie?.original_name || movie?.title}
+              selectedId={movie?.id}
+              title={movie?.name || movie?.original_name || movie?.title}
               date={
-                movie.first_air_date ?
+                movie?.first_air_date ?
                   date(movie?.first_air_date).toLocaleDateString("en-us", {
                     year: "numeric",
                   }) : date(movie?.release_date).toLocaleDateString("en-us", {
@@ -97,13 +98,17 @@ function MoviesSlider({
       <button ref={prevButtonRef} className="custom-prev"><ArrowBigLeftDash className="text-red-400" /></button>
       <button ref={nextButtonRef} className="custom-next"><ArrowBigRightDash className="text-red-400" /></button>
 
-      <div className="flex w-full justify-center items-center">
-        <button className="mt-4 px-6 py-2 cursor-pointer bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors"
-          onClick={() => navigate(btnClickAction)}
-        >
-          Show All
-        </button>
-      </div>
+      {
+        btnClickAction && (
+          <div className="flex w-full justify-center items-center">
+            <button className="mt-4 px-6 py-2 cursor-pointer bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors"
+              onClick={() => navigate(btnClickAction)}
+            >
+              Show All
+            </button>
+          </div>
+        )
+      }
 
     </section>
   )
