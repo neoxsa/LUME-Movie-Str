@@ -11,15 +11,16 @@ export default function Home() {
     const discoverTVShows = discoverTVShowsData?.results ?? []
     const trending = trendingData?.results ?? []
 
+    console.log("Trending Movies & TV Shows:", trending);
+
     return (
         <div className='flex flex-col'>
             <HeroSection />
 
-            {/* Trending Movies & TV Shows */}
+            {/* Trending Top 20 */}
             <MoviesSlider
-                title={"Trending Movies & TV Shows"}
+                title={"Trending Top 20"}
                 movies={trending}
-                btnClickAction={"/"}
             />
 
             {/* Discover Movies */}
