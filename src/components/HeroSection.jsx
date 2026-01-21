@@ -16,7 +16,7 @@ function HeroSection() {
     console.log(trendingMovies);
 
     return (
-        <section className="relative min-h-[70vh] w-full overflow-hidden">
+        <section className="relative -top-17 min-h-[70vh] w-full overflow-hidden">
             <div className="w-full h-full">
                 {
                     isLoading ? (
@@ -37,7 +37,7 @@ function HeroSection() {
                                 }}
                                 navigation={{
                                     clickable: true,
-                                   
+
                                 }}
                                 spaceBetween={20}
                                 slidesPerView={1}
@@ -45,6 +45,7 @@ function HeroSection() {
                             >
                                 {trendingMovies.map((movie) => (
                                     <SwiperSlide key={movie.id} className="relative">
+                                        
                                         {/* Background image */}
                                         <img
                                             src={`https://image.tmdb.org/t/p/w1280/${movie?.backdrop_path}`}
@@ -54,10 +55,10 @@ function HeroSection() {
                                             decoding="async"
                                         />
 
-                                        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+                                        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-transparent" />
 
                                         {/* Content */}
-                                        <div className="absolute inset-0 flex items-center">
+                                        <div className="absolute inset-0 flex items-center mt-20 md:mt-0">
                                             <div className="px-6 md:px-16 max-w-2xl text-white space-y-4 ">
                                                 <h1 className="text-3xl md:text-5xl font-extrabold text-red-400 leading-tight">
                                                     {movie?.name || movie?.original_name || movie?.title}
