@@ -38,7 +38,7 @@ export const apiSlice = createApi({
         // TV Shows Details By ID
         getTVShowsByID: builder.query({
             query: (series_id) => `tv/${series_id}`
-        }), 
+        }),
 
         // Movie Trailer Video
         getMovieTrailer: builder.query({
@@ -47,11 +47,21 @@ export const apiSlice = createApi({
 
         // TV Shows Trailer Video
         getTVShowTrailer: builder.query({
-            query: ({series_id, season_number}) => `tv/${series_id}/season/${season_number}/videos`
+            query: ({ series_id, season_number }) => `tv/${series_id}/season/${season_number}/videos`
+        }),
+
+        // Credits Movies
+        getMovieCredits: builder.query({
+            query: (movie_id) => `movie/${movie_id}/credits`
+        }),
+
+        // Credit TV Shows
+        getTVCredits: builder.query({
+            query: (tv_id) => `tv/${tv_id}/credits`
         })
 
     })
 })
 
-export const { useGetAllTrendingQuery, useGetDiscoverMoviesQuery, useGetMoviesByIDQuery, useGetTVShowsByIDQuery, useGetMovieTrailerQuery, useGetDiscoverTVShowsQuery, useGetTVShowTrailerQuery } = apiSlice
+export const { useGetAllTrendingQuery, useGetDiscoverMoviesQuery, useGetMoviesByIDQuery, useGetTVShowsByIDQuery, useGetMovieTrailerQuery, useGetDiscoverTVShowsQuery, useGetTVShowTrailerQuery, useGetMovieCreditsQuery, useGetTVCreditsQuery } = apiSlice
 
