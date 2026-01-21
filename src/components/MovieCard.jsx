@@ -1,5 +1,6 @@
 import { Clock, Star } from "lucide-react"
 import React, { memo } from "react"
+import { useNavigate } from "react-router-dom"
 
 const MovieCard = memo(function MovieCard({
   className = "",
@@ -7,10 +8,13 @@ const MovieCard = memo(function MovieCard({
   title,
   rating,
   date,
+  selectedId
 }) {
+const navigate = useNavigate();
+
   return (
     <article
-    
+      onClick={()=> navigate(`/detail/${selectedId}`)}
       className={`w-full max-w-55 md:max-w-65 cursor-pointer ${className}`}
     >
       {/* Poster */}
