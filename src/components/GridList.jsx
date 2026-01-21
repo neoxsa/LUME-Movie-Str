@@ -53,7 +53,8 @@ function GridList({
                             allData.map((data) => (
                                 <MovieCard
                                     key={data.id}
-                                    title={data.name || data?.original_name || data?.title}
+                                    selectedId={data?.id}
+                                    title={data?.name || data?.original_name || data?.title}
                                     date={
                                         data.first_air_date ?
                                             new Date(data?.first_air_date).toLocaleDateString("en-us", {
