@@ -1,77 +1,69 @@
 import React from 'react'
 
-function HeroSectionViewPage() {
+function HeroSectionViewPage({
+    selectedData,
+}) {
+
+
     return (
-        <section className='relative w-full h-screen overflow-hidden'>
-            {
-                trendingMovies.slice(0, 1).map((movie) => (
-                    <div className='relative w-full h-full flex justify-center items-center' key={movie.id}>
-                        <img
-                            className='absolute inset-0 w-full h-full object-cover'
-                            src={`https://image.tmdb.org/t/p/w1280/${movie?.backdrop_path}`}
-                            alt={movie?.name || movie?.title}
-                        />
+        <section className='relative -top-17 w-full h-[90vh] overflow-hidden'>
 
-                        <div className='absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-transparent' />
+            <div className='relative w-full h-full mt-4' key={selectedData?.id}>
+                <img
+                    className='absolute inset-0 w-full h-full object-cover'
+                    src={`https://image.tmdb.org/t/p/w1280/${selectedData?.backdrop_path}`}
+                    alt={selectedData?.name || selectedData?.title}
+                />
 
-                        <div className='relative z-10 flex items-center h-full px-6 md:px-16 lg:px-24'>
-                            <div className='flex flex-col lg:flex-row lg:items-start items-center gap-8 lg:gap-12 max-w-7xl'>
-                                <div className='relative group shrink-0'>
-                                    <img
-                                        className='w-48 md:w-64 lg:w-80 rounded-2xl shadow-2xl border border-white/20'
-                                        src={`https://image.tmdb.org/t/p/w400/${movie?.poster_path}`}
-                                        alt={movie?.name || movie?.title}
-                                    />
-                                    <button className='absolute inset-0 flex items-center justify-center bg-black/40 rounded-2xl opacity- <div key={movie.id} className="bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transform transition duration-300">
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              alt={movie.title}
-              className="w-full h-auto"
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="p-2">
-              <h3 className="text-white text-sm font-semibold">{movie.title}</h3>
-              <p className="text-gray-400 text-xs">Rating: {movie.vote_average}</p>
-            </div>
-          </div>0 group-hover:opacity-100 transition-opacity'>
-                                        <div className='w-16 h-16 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors shadow-lg'>
-                                            <svg className='w-6 h-6 text-white ml-1' fill='currentColor' viewBox='0 0 24 24'>
-                                                <path d='M8 5v14l11-7z' />
-                                            </svg>
-                                        </div>
-                                    </button>
+                <div className='absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-transparent' />
+
+                <div className='relative z-10 flex items-center h-full px-6 md:px-16 lg:px-24'>
+                    <div className='flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12 max-w-7xl'>
+                        <div className='relative group shrink-0'>
+                            <img
+                                className='w-48 md:w-64 lg:w-80 rounded-2xl shadow-2xl border border-white/20'
+                                src={`https://image.tmdb.org/t/p/w400/${selectedData?.poster_path}`}
+                                alt={selectedData?.name || selectedData?.title}
+                            />
+                            <button className='absolute inset-0 flex items-center justify-center bg-black/40 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity'>
+                                <div className='w-16 h-16 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors shadow-lg'>
+                                    <svg
+                                        className='w-6 h-6 text-white ml-1' fill='currentColor' viewBox='0 0 24 24'>
+                                        <path d='M8 5v14l11-7z' />
+                                    </svg>
                                 </div>
+                            </button>
+                        </div>
 
-                                <div className='text-white space-y-6 max-w-2xl'>
-                                    <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold leading-tight'>
-                                        {movie?.name || movie?.original_name || movie?.title}
-                                    </h1>
+                        <div className='text-white space-y-6 max-w-2xl'>
+                            <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold leading-tight'>
+                                {selectedData?.name || selectedData?.original_name || selectedData?.title}
+                            </h1>
 
-                                    <div className='flex items-center gap-4 text-sm md:text-base text-gray-300'>
-                                        <span>{movie?.release_date || movie?.first_air_date}</span>
-                                        <span>•</span>
-                                        <div className='flex items-center gap-2'>
-                                            ⭐
-                                            <span className='font-semibold text-yellow-400'>{movie?.vote_average?.toFixed(1)}</span>
-                                            <span className='text-gray-400'>/10</span>
-                                        </div>
-                                    </div>
-
-                                    <div className='space-y-3'>
-                                        <h3 className='text-xl font-semibold'>Overview</h3>
-                                        <p className='text-gray-200 leading-relaxed line-clamp-3'>{movie?.overview}</p>
-                                    </div>
-
-                                    <button className='bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors shadow-lg hover:shadow-xl'>
-                                        Watch Now
-                                    </button>
+                            <div className='flex items-center gap-4 text-sm md:text-base text-gray-300'>
+                                <span>{selectedData?.release_date || selectedData?.first_air_date}</span>
+                                <span>•</span>
+                                <div className='flex items-center gap-2'>
+                                    <span>⭐</span>
+                                    <span className='font-semibold text-yellow-400'>{selectedData?.vote_average?.toFixed(1)}</span>
+                                    <span className='text-gray-400'>/10</span>
                                 </div>
                             </div>
+
+                            <div className='space-y-3'>
+                                <h3 className='text-xl font-semibold'>Overview</h3>
+                                <p className='text-gray-200 leading-relaxed'>{selectedData?.overview}</p>
+                            </div>
+
+                            <button className='bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors shadow-lg hover:shadow-xl'>
+                                Watch Now
+                            </button>
+
                         </div>
+
                     </div>
-                ))
-            }
+                </div>
+            </div>
         </section>
     )
 }
