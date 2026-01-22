@@ -12,7 +12,7 @@ function NavBar() {
         {
             id: 2,
             label: 'Movies',
-            to: '/movies',
+            to: `/movies`,
         },
         {
             id: 3,
@@ -28,7 +28,7 @@ function NavBar() {
 
     return (
         <nav
-            className=" fixed z-50 top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl px-6 py-3  bg-black/40 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/40 rounded-2xl transition-all duration-300"
+            className=" sticky z-50 top-4  mx-auto w-[95%] max-w-7xl px-6 py-3  bg-black/40 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/40 rounded-2xl transition-all duration-300"
         >
             <div className="flex items-center justify-between">
                 <Link to="/" className="flex items-center">
@@ -52,7 +52,7 @@ function NavBar() {
                         </li>
                     ))}
                 </ul>
-                
+
                 {/* Buttons */}
                 <div className="flex items-center gap-3">
                     <button
