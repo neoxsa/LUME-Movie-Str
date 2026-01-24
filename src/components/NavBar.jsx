@@ -28,7 +28,7 @@ function NavBar() {
 
     return (
         <nav
-            className=" sticky z-50 top-4  mx-auto w-[95%] max-w-7xl px-6 py-3  bg-black/40 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/40 rounded-2xl transition-all duration-300"
+            className=" sticky z-50 top-2 md:top-4  mx-auto w-[95%] max-w-7xl px-6 py-3  bg-black/40 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/40 rounded-2xl transition-all duration-300"
         >
             <div className="flex items-center justify-between">
                 <Link to="/" className="flex items-center">
@@ -47,7 +47,7 @@ function NavBar() {
                             </NavLink>
 
                             <span
-                                className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#df2144] transition-all duration-300 group-hover:w-full"
+                                className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#df2144] transition-all duration-300 group-hover:w-full"
                             />
                         </li>
                     ))}
