@@ -1,6 +1,6 @@
 import { Play } from 'lucide-react';
 import React from 'react'
-import TrailerOnYT from './TrailerOnYT';
+import TrailerModal from './TrailerModal';
 
 function HeroSectionViewPage({
     selectedData,
@@ -9,19 +9,19 @@ function HeroSectionViewPage({
 
     const [isTrailerOpen, setIsTrailerOpen] = React.useState(false);
 
-    console.log(isTrailerOpen);
-
     const date = new Date(selectedData?.release_date || selectedData?.first_air_date);
 
 
     return (
         <section className='relative -top-17 w-full h-full lg:h-[90vh] overflow-hidden'>
 
+            {/* Trailer Modal */}
             {
                 isTrailerOpen && (
-                    <TrailerOnYT
+                    <TrailerModal
                         trailerKey={trailerKey}
-                        onClose={() => setIsTrailerOpen(false)} />
+                        onClose={() => setIsTrailerOpen(false)}
+                    />
                 )
             }
 
@@ -46,7 +46,7 @@ function HeroSectionViewPage({
                             />
                             <button
                                 onClick={() => setIsTrailerOpen(!isTrailerOpen)}
-                                className='absolute inset-0 flex items-center justify-center bg-black/40 rounded-2xl opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity cursor-pointer'>
+                                className='absolute inset-0 z-20 flex items-center justify-center bg-black/40 rounded-2xl opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity cursor-pointer'>
                                 <div className='w-16 h-16 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 active:bg-red-700 transition-colors shadow-lg'>
                                     <Play className='w-6 h-6 text-white ml-1' />
                                 </div>
@@ -80,7 +80,7 @@ function HeroSectionViewPage({
                                 <p className='text-gray-200 leading-relaxed text-sm lg:text-lg'>{selectedData?.overview}</p>
                             </div>
 
-                            <button className='bg-red-600 hover:bg-red-700 active:bg-red-700 text-lg:text-base text-white font-semibold px-5 py-2.5 lg:px-8 lg:py-3 rounded-lg transition-colors shadow-lg hover:shadow-xl mb-4 lg:mb-0 cursor-pointer'>
+                            <button className='bg-red-600 hover:bg-red-700 active:bg-red-700 text-lg:text-base text-white font-semibold px-5 py-2.5 lg:px-8 lg:py-3 rounded-lg transition-colors shadow-lg hover:shadow-xl mb-8 lg:mb-2 cursor-pointer'>
                                 Watch Now
                             </button>
 
