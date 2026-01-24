@@ -33,6 +33,7 @@ function DetailView() {
     <>
       <HeroSectionViewPage
         selectedData={selectedData}
+        trailerKey={trailerKey}
       />
       <Casts
         cast={movieCredits?.cast}
