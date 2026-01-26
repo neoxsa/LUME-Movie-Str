@@ -20,19 +20,22 @@ export default function Home() {
             {/* Trending Top 20 */}
             <MoviesSlider
                 title={"Trending Top 20"}
-                movies={trending}
+                media={trending}
+                mediaType={'all'}
             />
 
             {/* Discover Movies */}
             <MoviesSlider
                 title={"Discover Movies"}
-                movies={discoverMovies}
+                media={discoverMovies}
+                mediaType={'movie'}
                 btnClickAction={'/movies'}
             />
             {/* Discover TV Shows */}
             <MoviesSlider
                 title={"Discover TV Shows"}
-                movies={discoverTVShows}
+                mediaType={'tv'}
+                media={discoverTVShows}
                 btnClickAction={'/tv-shows'}
             />
 
