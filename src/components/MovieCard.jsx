@@ -8,13 +8,16 @@ const MovieCard = memo(function MovieCard({
   title,
   rating,
   date,
-  selectedId
+  selectedId,
+  mediaType
 }) {
 const navigate = useNavigate();
+console.log("Media Type in MovieCard:", mediaType);
+
 
   return (
     <article
-      onClick={()=> navigate(`/detail/${selectedId}`)}
+      onClick={()=> navigate(`/category/${mediaType}/${selectedId}`)}
       className={`w-full max-w-55 md:max-w-65 cursor-pointer ${className}`}
     >
       {/* Poster */}
