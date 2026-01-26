@@ -8,6 +8,7 @@ function Movies() {
     <GridList
       discoverQuery={useGetDiscoverMoviesQuery}
       navigatePath="movies"
+      mediaType={"movie"}
     />
   )
 }

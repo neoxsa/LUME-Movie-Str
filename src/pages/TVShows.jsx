@@ -7,6 +7,7 @@ function TVShows() {
     <GridList
       discoverQuery={useGetDiscoverTVShowsQuery}
       navigatePath="tv-shows"
+      mediaType="tv"
     />
   )
 }
