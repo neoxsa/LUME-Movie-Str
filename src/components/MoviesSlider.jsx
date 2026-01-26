@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom"
 
 function MoviesSlider({
   title,
-  movies,
+  media,
+  mediaType,
   btnClickAction
 }) {
   const swiperRef = useRef(null);
@@ -21,6 +22,10 @@ function MoviesSlider({
   const navigate = useNavigate();
 
   const date = (dateString) => new Date(dateString);
+
+  console.log("Type:", mediaType); 
+
+  console.log("Media in MoviesSlider:", media);
 
 
   useEffect(() => {
@@ -39,7 +44,7 @@ function MoviesSlider({
       <Swiper
         ref={swiperRef}
         modules={[Navigation]}
-        loop={movies.length > 6}
+        loop={media?.length > 6}
         slidesPerView={1}
         spaceBetween={12}
         breakpoints={{
@@ -66,7 +71,7 @@ function MoviesSlider({
         }}
       >
         {/* Skeleton loading */}
-        {movies.length === 0 && (
+        {media?.length === 0 && (
           <>
             {[...Array(6)].map((_, index) => (
               <SwiperSlide key={index}>
@@ -76,21 +81,22 @@ function MoviesSlider({
           </>
         )}
 
-        {/* Movies */}
-        {movies.map((movie) => (
-          <SwiperSlide key={movie.id}>
+        {/* Movies || TV Shows*/}
+        {media?.map((episode) => (
+          <SwiperSlide key={episode?.id}>
             <MovieCard
-              selectedId={movie?.id}
-              title={movie?.name || movie?.original_name || movie?.title}
+              selectedId={episode?.id}
+              mediaType={mediaType}
+              title={episode?.name || episode?.original_name || episode?.title}
               date={
-                movie?.first_air_date ?
-                  date(movie?.first_air_date).toLocaleDateString("en-us", {
+                episode?.first_air_date ?
+                  date(episode?.first_air_date).toLocaleDateString("en-us", {
                     year: "numeric",
-                  }) : date(movie?.release_date).toLocaleDateString("en-us", {
+                  }) : date(episode?.release_date).toLocaleDateString("en-us", {
                     year: "numeric",
                   })}
-              rating={movie.vote_average?.toFixed(1)}
-              poster={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+              rating={episode.vote_average?.toFixed(1)}
+              poster={`https://image.tmdb.org/t/p/w342/${episode.poster_path}`}
             />
           </SwiperSlide>
         ))}
