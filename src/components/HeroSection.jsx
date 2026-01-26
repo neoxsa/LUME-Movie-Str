@@ -1,8 +1,9 @@
 import React from 'react'
 import HeroSkeleton from './Skeleton/HeroSkeleton';
+import { useNavigate } from 'react-router-dom';
 import { useGetAllTrendingQuery } from '#api/tmdbApi.js'
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -10,10 +11,10 @@ import 'swiper/css/effect-fade';
 
 
 function HeroSection() {
-
     const { data, isLoading, isError, error } = useGetAllTrendingQuery();
-    const trendingMovies = data?.results || [];
-    console.log(trendingMovies);
+    const navigate = useNavigate();
+    const trendingMoviesOrShows = data?.results || [];
+
 
     return (
         <section className="relative -top-17 min-h-[70vh] w-full overflow-hidden">
@@ -43,13 +44,13 @@ function HeroSection() {
                                 slidesPerView={1}
                                 loop={true}
                             >
-                                {trendingMovies.map((movie) => (
-                                    <SwiperSlide key={movie.id} className="relative">
-                                        
+                                {trendingMoviesOrShows.map((media) => (
+                                    <SwiperSlide key={media.id} className="relative">
+
                                         {/* Background image */}
                                         <img
-                                            src={`https://image.tmdb.org/t/p/w1280/${movie?.backdrop_path}`}
-                                            alt={movie?.name || movie?.title}
+                                            src={`https://image.tmdb.org/t/p/w1280/${media?.backdrop_path}`}
+                                            alt={media?.name || media?.title}
                                             className="w-full h-[70vh] xl:h-[90vh] object-cover"
                                             loading="lazy"
                                             decoding="async"
@@ -61,23 +62,25 @@ function HeroSection() {
                                         <div className="absolute inset-0 flex items-center mt-20 md:mt-0">
                                             <div className="px-6 md:px-16 max-w-2xl text-white space-y-4 ">
                                                 <h1 className="text-3xl md:text-5xl font-extrabold text-red-400 leading-tight">
-                                                    {movie?.name || movie?.original_name || movie?.title}
+                                                    {media?.name || media?.original_name || media?.title}
                                                 </h1>
 
                                                 <div className="flex items-center gap-4 text-sm md:text-base text-gray-300">
                                                     <span className="font-semibold">
-                                                        ⭐ {movie?.vote_average?.toFixed(1)}
+                                                        ⭐ {media?.vote_average?.toFixed(1)}
                                                     </span>
                                                     <span className="uppercase tracking-wide">
-                                                        {movie?.media_type}
+                                                        {media?.media_type}
                                                     </span>
                                                 </div>
 
                                                 <p className="text-sm md:text-lg text-gray-200 line-clamp-4">
-                                                    {movie?.overview}
+                                                    {media?.overview}
                                                 </p>
 
-                                                <button className="mt-4 inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 transition px-6 py-3 rounded-lg text-black font-bold cursor-pointer">
+                                                <button
+                                                    onClick={() => navigate(`/category/${media?.media_type}/${media?.id}`)}
+                                                    className="mt-4 inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 transition px-6 py-3 rounded-lg text-black font-bold cursor-pointer">
                                                     Watch Now
                                                 </button>
                                             </div>
