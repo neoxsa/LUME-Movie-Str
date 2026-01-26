@@ -5,7 +5,8 @@ import MovieCardSkeleton from '#components/Skeleton/MovieCardSkeleton';
 
 function GridList({
     discoverQuery,
-    navigatePath
+    navigatePath,
+    mediaType
 }) {
 
     const { page_no } = useParams();
@@ -22,6 +23,7 @@ function GridList({
     const allData = data?.results ?? [];
 
     console.log("All Data:", allData);
+    console.log("Media Type in GridList:", mediaType);
 
     const handleNextPage = () => {
         const nextPage = page + 1;
@@ -53,6 +55,7 @@ function GridList({
                             allData.map((data) => (
                                 <MovieCard
                                     key={data.id}
+                                    mediaType={mediaType}
                                     selectedId={data?.id}
                                     title={data?.name || data?.original_name || data?.title}
                                     date={
