@@ -13,7 +13,7 @@ function DetailView() {
   console.log("Selected ID:", selectedId);
 
   // Movies Id:
-  const { data: selectedData } = useGetMoviesByIDQuery(selectedId)
+  const { data: selectedData, isLoading: isMovieLoading, isError: isMovieError } = useGetMoviesByIDQuery(selectedId)
   console.log("Selected Data:", selectedData);
 
   // TV Shows Id:
@@ -25,7 +25,7 @@ function DetailView() {
   // // TV Show Trailer:
   const { data: tvTrailerData, isLoading: isTVTrailerLoading, isError: isTVTrailerError } = useGetTVShowTrailerQuery({ series_id: selectedId, season_number: 1 });
 
-  const { data: movieCredits } = useGetMovieCreditsQuery(selectedId);
+  const { data: movieCredits, isLoading: isMovieCreditsLoading, isError: isMovieCreditsError, error: movieCreditsError } = useGetMovieCreditsQuery(selectedId);
 
   const trailerKey = trailerData?.results?.length ? trailerData.results.find(trailer => trailer.name)?.key : null;
 
@@ -45,6 +45,7 @@ function DetailView() {
         <HeroSectionViewPage
           selectedData={selectedData}
           trailerKey={trailerKey}
+          isLoading={isMovieLoading}
         />
         <Casts
           cast={movieCredits?.cast}
@@ -57,6 +58,7 @@ function DetailView() {
         <HeroSectionViewPage
           selectedData={selectedTVData}
           trailerKey={tvTrailerKey}
+          isLoading={isTVLoading}
         />
         <Casts
           cast={tvCredits?.cast}
@@ -69,6 +71,7 @@ function DetailView() {
         <HeroSectionViewPage
           selectedData={selectedTVData || selectedData}
           trailerKey={tvTrailerKey || trailerKey}
+          isLoading={isMovieLoading || isTVLoading}
         />
         <Casts
           cast={tvCredits?.cast || movieCredits?.cast}
