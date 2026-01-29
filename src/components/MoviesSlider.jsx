@@ -23,11 +23,6 @@ function MoviesSlider({
 
   const date = (dateString) => new Date(dateString);
 
-  console.log("Type:", mediaType); 
-
-  console.log("Media in MoviesSlider:", media);
-
-
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.params.navigation.nextEl = nextButtonRef.current;
