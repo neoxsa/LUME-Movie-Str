@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 import logo from '#assets/logo.webp'
 import { Menu, X } from 'lucide-react'
 import SideNavBar from './SideNavBar'
+import SearchBar from './SearchBar'
 
 function NavBar() {
 
@@ -12,7 +13,6 @@ function NavBar() {
         setIsMenuOpen(!isMenuOpen)
     }
 
-    console.log(isMenuOpen)
 
     const navItems = [
         {
@@ -31,7 +31,7 @@ function NavBar() {
             to: '/tv-shows',
         },
         {
-            id: 4,
+            id: 4,  
             label: 'Contact',
             to: '/contact',
         },
@@ -49,7 +49,8 @@ function NavBar() {
                 {/* Nav links */}
 
                 <div className='flex justify-center items-center gap-0 sm:gap-5'>
-                    <div className='md:hidden'>
+                    <SearchBar  />
+                    <div className='md:hidden transition-all duration-300 '>
                         {
                             isMenuOpen ? (
                                 <X
@@ -70,7 +71,7 @@ function NavBar() {
                             />
                         )
                     }
-
+    
                     <ul className="hidden md:flex items-center gap-8">
                         {navItems.map((item) => (
                             <li key={item.id} className="relative group">
