@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import HeroSkeleton from './Skeleton/HeroSkeleton';
 import { useNavigate } from 'react-router-dom';
 import { useGetAllTrendingQuery } from '#api/tmdbApi.js'
@@ -20,8 +20,6 @@ function HeroSection() {
     const prevButtonRef = useRef(null);
     const nextButtonRef = useRef(null);
 
-
-
     return (
         <section className="relative -top-17 min-h-[70vh] w-full overflow-hidden">
             <div className="w-full h-full">
@@ -29,7 +27,7 @@ function HeroSection() {
                     isLoading ? (
                         <HeroSkeleton />
                     ) :
-                        isError ? <div className='text-red-500'>Error: {error.message}</div> :
+                        isError ? <div className='text-red-500 font-medium text-lg w-full justify-center items-center flex h-[50vh]'>{error?.status}</div> :
                             (
                                 <>
                                     <Swiper
@@ -51,10 +49,10 @@ function HeroSection() {
                                         }}
                                         keyboard={{
                                             enabled: true,
-                                            onlyInViewport: true, 
+                                            onlyInViewport: true,
                                         }}
                                         mousewheel={{
-                                            forceToAxis: true,    
+                                            forceToAxis: true,
                                             sensitivity: 1,
                                             releaseOnEdges: true,
                                         }}

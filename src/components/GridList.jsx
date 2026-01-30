@@ -50,7 +50,7 @@ function GridList({
                             <MovieCardSkeleton key={index} />
                         ))
                         : isError ? (
-                            <div className='text-red-500'>Error: {error.message}</div>
+                            <div className='text-red-500 font-medium text-lg w-full justify-center items-center flex h-[50vh]'>{error.status}</div>
                         ) : (
                             allData.map((data) => (
                                 <MovieCard
