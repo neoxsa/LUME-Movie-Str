@@ -14,9 +14,12 @@
 /* Custom Scrollbar Styles */
 .custom-scrollbar::-webkit-scrollbar {
   height: 6px;
+  width: 5px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
   background: #111827;
+  margin-top: 1px;
+  border-radius: 3px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: #4b5563;
@@ -26,7 +29,11 @@
   background: #6b7280;
 }
 
-
+@media (max-width: 640px) {
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 /* Swiper Navigation Arrows */
 .custom-prev,
@@ -49,11 +56,11 @@
 }
 
 .custom-prev {
-  left: 50px;  
+  left: 50px;
 }
 
 .custom-next {
-  right: 50px;  
+  right: 50px;
 }
 
 /* Hide on small screens */
