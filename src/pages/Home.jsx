@@ -2,6 +2,7 @@ import HeroSection from '#components/HeroSection'
 import MoviesSlider from '#components/MoviesSlider'
 import { useGetAllTrendingQuery, useGetDiscoverMoviesQuery, useGetDiscoverTVShowsQuery } from "#api/tmdbApi"
 import React from 'react'
+import Newsletter from '#components/Newsletter';
 
 export default function Home() {
     const { data: discoverMoviesData } = useGetDiscoverMoviesQuery(1);
@@ -39,6 +40,9 @@ export default function Home() {
                 btnClickAction={'/tv-shows'}
             />
 
+            {/* Newsletter */}
+            <Newsletter
+            />
         </div>
     )
 }
