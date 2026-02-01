@@ -39,7 +39,7 @@ function NavBar() {
 
     return (
         <nav
-            className=" sticky z-50 top-2 md:top-4  mx-auto w-[95%] max-w-7xl px-6 py-3  bg-black/40 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/40 rounded-2xl transition-all duration-300"
+            className=" sticky z-50 top-2 md:top-4  mx-auto w-[95%] max-w-7xl px-3 md:px-6 py-3  bg-black/40 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/40 rounded-2xl transition-all duration-300"
         >
             <div className="flex items-center justify-between">
                 <Link to="/" className="flex items-center">
@@ -48,7 +48,7 @@ function NavBar() {
 
                 {/* Nav links */}
 
-                <div className='flex justify-center items-center gap-0 sm:gap-5'>
+                <div className='flex justify-center items-center gap-2 sm:gap-5'>
                     <SearchBar  />
                     <div className='md:hidden transition-all duration-300 '>
                         {
