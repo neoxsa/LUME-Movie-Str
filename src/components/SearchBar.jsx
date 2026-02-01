@@ -1,10 +1,13 @@
 import React from "react";
 import { Search, X } from "lucide-react";
 import { useGetSearchResultsQuery } from "#api/tmdbApi";
+import SearchItems from "#assets/SearchItems";
 
 function SearchBar() {
-  const [searchType, setSearchType] = React.useState("");
+  const [isSearchOpen, setIsSearchOpen] = React.useState(false)
   const [searchKey, setSearchKey] = React.useState("");
+
+  const searchType = searchKey.length > 2 ? "multi" : "";
 
   const { data } = useGetSearchResultsQuery(
     {
@@ -18,112 +21,65 @@ function SearchBar() {
 
   const searchHandler = (e) => {
     e.preventDefault();
-    setSearchType("multi");
   };
 
-  const results = data?.results;
+  const openSearch = () => setIsSearchOpen(true);
+
+  const searchCleanUp = () => {
+    setIsSearchOpen(false);
+    setSearchKey("");
+  }
 
   return (
     <section>
       <div>
-       <form
-  onSubmit={searchHandler}
-  className="flex items-center gap-2 border rounded-xl px-3 py-2
-             w-full bg-black
-             focus-within:border-red-400 focus-within:ring-1 focus-within:ring-red-400"
->
-  <input
-    type="text"
-    placeholder="Search movies, shows, people..."
-    value={searchKey}
-    onChange={(e) => setSearchKey(e.target.value)}
-    className="flex-1 outline-none bg-transparent text-white
-               text-sm md:text-base"
-  />
+        <form
+          onSubmit={searchHandler}
+          onClick={openSearch}
+          className="transition-all duration-500 ease-in-out inline-flex items-center gap-2 border rounded-xl  px-2 py-2 w-full bg-black/10 focus-within:border-red-400 focus-within:ring-1 focus-within:ring-red-400"
+        >
+          <Search className="w-5 h-5 md:w-6 md:h-6" />
 
-  {searchKey && (
-    <button
-      type="button"
-      className="opacity-70 hover:opacity-100"
-      aria-label="Clear search"
-    >
-      <X className="w-5 h-5" />
-    </button>
-  )}
+          {
+            isSearchOpen && (
+              <input
+                type="text"
+                value={searchKey}
+                onChange={(e) => setSearchKey(e.target.value)}
+                placeholder="Search for movies or tv shows..."
+                className="flex-1 outline-none bg-transparent text-white text-sm md:text-base"
+                autoFocus
+                aria-label="Search input"
+              />
+            )
+          }
 
-  <button
-    type="submit"
-    className="opacity-80 hover:opacity-100"
-    aria-label="Search"
-  >
-    <Search className="w-5 h-5 md:w-6 md:h-6" />
-  </button>
-</form>
-
+          {searchKey && (
+            <button
+              onClick={searchCleanUp}
+              type="button"
+              className="opacity-70 hover:opacity-100"
+              aria-label="Clear search"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
+        </form>
       </div>
 
       {/* Result List */}
-      {results?.length > 0 && (
-        <div
-             className="
-      fixed md:absolute
-      inset-x-0 md:left-0
-      top-18 md:top-full
-      bg-black/95 border border-white/10
-      rounded-t-xl md:rounded-xl
-      p-3 md:p-5
-      max-h-[60vh] md:max-h-96
-      overflow-y-auto
-      z-50 custom-scrollbar
-    "
-          aria-label="Search result"
-        >
-          <ul className="flex flex-col gap-5" aria-label="All Results">
-            {results.map((item) =>
-          (  <li
-  key={item.id}
-  className="flex gap-3 p-2 rounded-lg
-             hover:bg-white/5 transition
-             border-l-4 border-red-500 cursor-pointer"
->
-  <img
-    src={
-      item.profile_path || item.poster_path
-        ? `https://image.tmdb.org/t/p/w185/${item.profile_path || item.poster_path}`
-        : "https://placehold.co/150x225?text=No+Image"
-    }
-    alt={item.title || item.name}
-    className="w-14 md:w-20 rounded-md object-cover shrink-0"
-  />
 
-  <div className="flex flex-col justify-center">
-    <h2 className="text-sm md:text-lg leading-tight line-clamp-2">
-      {item.title || item.name}
-    </h2>
+      {
+        isSearchOpen && searchKey
+          ? (
+            <SearchItems
+              close={searchCleanUp}
+              query={searchKey.toLowerCase()}
+              data={data}
+            />)
+          : null
+      }
 
-    <p className="text-xs md:text-sm font-medium text-red-400">
-      {item.media_type === "person"
-        ? item.known_for_department
-        : item.release_date}
-    </p>
-  </div>
-</li>
-
-              )
-            )}
-          </ul>
-
-          <button
-            onClick={() => {}}
-             className="mt-4 w-full py-2 rounded-xl
-             bg-white text-black font-medium
-             active:scale-95 transition cursor-pointer"
-            aria-label="Show all results button"
-          >
-            Show all results
-          </button>
-        </div>
-      )}
     </section>
   );
 }
