@@ -6,10 +6,8 @@ import HeroSkeletonDetailView from './Skeleton/HeroSkeletonDetailView';
 function HeroSectionViewPage({
     selectedData,
     trailerKey,
-    isLoading = true
+    isLoading = true,
 }) {
-
-
 
     const [isTrailerOpen, setIsTrailerOpen] = React.useState(false);
 
@@ -36,7 +34,7 @@ function HeroSectionViewPage({
                         key={selectedData?.id}>
                         <img
                             className='absolute inset-0 w-full h-full object-cover brightness-50'
-                            src={`https://image.tmdb.org/t/p/w1280/${selectedData?.backdrop_path}`}
+                            src={ selectedData?.backdrop_path ?  `https://image.tmdb.org/t/p/w1280/${selectedData?.backdrop_path}` : "https://placehold.co/300x450?text=No+Image"}
                             alt={selectedData?.name || selectedData?.title}
                         />
 
@@ -47,7 +45,7 @@ function HeroSectionViewPage({
                                 <div className='relative group shrink-0 mt-25 lg:mt-0'>
                                     <img
                                         className='w-48 md:w-64 lg:w-80 rounded-2xl shadow-2xl border border-white/20'
-                                        src={`https://image.tmdb.org/t/p/w400/${selectedData?.poster_path}`}
+                                        src={ selectedData?.poster_path ? `https://image.tmdb.org/t/p/w400/${selectedData?.poster_path}` : "https://placehold.co/300x450?text=No+Image"}
                                         alt={selectedData?.name || selectedData?.title}
                                     />
                                     <button
