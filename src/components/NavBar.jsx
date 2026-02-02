@@ -13,6 +13,10 @@ function NavBar() {
         setIsMenuOpen(!isMenuOpen)
     }
 
+    const closeSidebar = () => {
+        setIsMenuOpen(false)
+    }
+
 
     const navItems = [
         {
@@ -31,7 +35,7 @@ function NavBar() {
             to: '/tv-shows',
         },
         {
-            id: 4,  
+            id: 4,
             label: 'Contact',
             to: '/contact',
         },
@@ -49,29 +53,18 @@ function NavBar() {
                 {/* Nav links */}
 
                 <div className='flex justify-center items-center gap-2 sm:gap-5'>
-                    <SearchBar  />
-                    <div className='md:hidden transition-all duration-300 '>
-                        {
-                            isMenuOpen ? (
-                                <X
-                                    onClick={toggleMenu}
-                                />
-                            ) : (
-                                <Menu
-                                    onClick={toggleMenu}
-                                />
-                            )
-                        }
-                    </div>
+
+                    {/* Side Bar */}
 
                     {
                         isMenuOpen && (
                             <SideNavBar
-                            navItems={navItems}
+                                navItems={navItems}
+                                closeSidebar={closeSidebar()}
                             />
                         )
                     }
-    
+
                     <ul className="hidden md:flex items-center gap-8">
                         {navItems.map((item) => (
                             <li key={item.id} className="relative group">
@@ -87,7 +80,26 @@ function NavBar() {
                                 />
                             </li>
                         ))}
+
+
                     </ul>
+                    {/* Search Bar */}
+                    <SearchBar />
+
+                    {/* Hamburger Menu */}
+                    <div className='md:hidden transition-all duration-300 '>
+                        {
+                            isMenuOpen ? (
+                                <X
+                                    onClick={toggleMenu}
+                                />
+                            ) : (
+                                <Menu
+                                    onClick={toggleMenu}
+                                />
+                            )
+                        }
+                    </div>
 
                     {/* Buttons */}
                     <div className="flex items-center gap-3">
