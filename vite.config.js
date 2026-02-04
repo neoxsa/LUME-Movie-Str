@@ -10,6 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '#components': resolve(dirname(fileURLToPath(import.meta.url)), './src/components'),
+      '#features': resolve(dirname(fileURLToPath(import.meta.url)), './src/features'),
       '#pages': resolve(dirname(fileURLToPath(import.meta.url)), './src/pages'),
       '#assets': resolve(dirname(fileURLToPath(import.meta.url)), './src/assets'),
       '#api': resolve(dirname(fileURLToPath(import.meta.url)), './src/api'),
