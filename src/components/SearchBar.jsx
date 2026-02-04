@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Search, X } from "lucide-react";
 import { useGetSearchResultsQuery } from "#api/tmdbApi";
-import SearchItems from "#assets/SearchItems";
+import SearchItems from "#components/SearchItems";
 
 function SearchBar() {
   const [isSearchOpen, setIsSearchOpen] = React.useState(false)
   const [searchKey, setSearchKey] = React.useState("");
+  const [isDebounce, setIsDebounce] = React.useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setIsDebounce(searchKey)
+    }, 500)
+
+    return () => clearTimeout(handler)
+  }, [searchKey])
+
 
   const searchType = searchKey.length > 2 ? "multi" : "";
 
   const { data } = useGetSearchResultsQuery(
     {
       search_type: searchType,
-      search_key: searchKey,
+      search_key: isDebounce,
     },
     {
-      skip: !searchType || !searchKey,
+      skip: !searchType || !isDebounce,
     }
   );
 
@@ -36,7 +46,7 @@ function SearchBar() {
         <form
           onSubmit={searchHandler}
           onClick={openSearch}
-          className="transition-all duration-500 ease-in-out inline-flex items-center gap-2 border rounded-xl  px-2 py-2 w-full bg-black/10 focus-within:border-red-400 focus-within:ring-1 focus-within:ring-red-400"
+          className="transition-all duration-500 ease-in-out inline-flex items-center gap-2 border rounded-full  px-1 py-1 w-full bg-black/10 focus-within:border-red-400 focus-within:ring-1 focus-within:ring-red-400 cursor-pointer"
         >
           <Search className="w-5 h-5 md:w-6 md:h-6" />
 
@@ -72,11 +82,13 @@ function SearchBar() {
       {
         isSearchOpen && searchKey
           ? (
-            <SearchItems
-              close={searchCleanUp}
-              query={searchKey.toLowerCase()}
-              data={data}
-            />)
+            <div className="relative">
+              <SearchItems
+                close={searchCleanUp}
+                query={searchKey.toLowerCase()}
+                data={data}
+              />
+            </div>)
           : null
       }
 
