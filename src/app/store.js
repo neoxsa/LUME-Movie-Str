@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "#api/tmdbApi";
-import { searchResultReducer } from "#features/searchResult";
+import searchResultReducer from "#features/searchResult";
 
 export const store = configureStore({
     reducer: {
