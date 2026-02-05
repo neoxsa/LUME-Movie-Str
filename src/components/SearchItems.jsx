@@ -1,31 +1,46 @@
 import React from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { allResults } from '#features/searchResult';
 
 function SearchItems({
     close,
     query,
-    data = []
+    data = {}
 }) {
 
     const navigate = useNavigate();
-    const { page, results } = data
+    const {results = []} = data
 
-    console.log("Results :", results)   
+    const dispatch = useDispatch();
+
+    const handlerShowAllResults = () => {
+            dispatch(allResults(data));
+            navigate(`/search/${query}`);
+            close();
+    }
+
+    const searchData = useSelector(state => state.searchResult.results);
+
+    console.log("Data : ", searchData)
+
+    console.log("Results :", results)
 
     return (
         <section
-        className="w-full h-screen absolute left-0"
-        onClick={close}
+            className="w-full h-screen absolute left-0"
+            onClick={close}
         >
-            
+
             {results?.length > 0 && (
                 <div
+                onClick={(e)=> e.stopPropagation()}
                     className="fixed md:absolute inset-x-0 md:left-0 top-18 md:top-5 bg-black/95 border border-white/10 rounded-t-xl md:rounded-xl p-3 md:p-5 max-h-[60vh] md:max-h-96 z-50 custom-scrollbar overflow-y-auto"
                     aria-label="Search result"
                 >
-                    <ul 
-                    className="flex flex-col gap-5" 
-                    aria-label="All Results">
+                    <ul
+                        className="flex flex-col gap-5"
+                        aria-label="All Results">
                         {results.map((item) =>
                         (<Link
                             key={item.id}
@@ -33,7 +48,6 @@ function SearchItems({
                             onClick={close}
                         >
                             <li
-                                key={item.id}
                                 className="flex gap-3 p-2 rounded-lg hover:bg-white/5 transition border-l-4 border-red-500 cursor-pointer"
                             >
                                 <img
@@ -63,7 +77,7 @@ function SearchItems({
                     </ul>
 
                     <button
-                        onClick={() => navigate(`/search/${query}/${page}`)}
+                        onClick={handlerShowAllResults}
                         className="mt-4 w-full py-2 rounded-xl bg-white text-black font-medium active:scale-95 transition cursor-pointer"
                         aria-label="Show all results button"
                     >
