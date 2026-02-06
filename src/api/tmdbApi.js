@@ -22,7 +22,7 @@ export const apiSlice = createApi({
 
         // Search Movies/TV Shows
         getSearchResults: builder.query({
-            query: ({ search_type, search_key }) => `/search/${search_type}?query=${search_key}&include_adult=false`
+            query: ({ search_type, search_key, page_no }) => `/search/${search_type}?query=${search_key}&include_adult=false&language=en-US&page=${page_no || 1}`
         }),
 
         // Discover Movies Pagination
