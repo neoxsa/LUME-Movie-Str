@@ -19,7 +19,7 @@ function ResultCard({
                     className='w-full h-full object-cover group-hover:scale-105 transition-transform'
                 />
             </div>
-            <h3 className='text-white font-bold text-sm mt-2 truncate line-clamp-2'>
+            <h3 className='text-white font-bold text-sm mt-2 truncate text-wrap'>
                 {title}
             </h3>
             <span className='text-red-400 text-xs font-medium uppercase tracking-wide'>
