@@ -1,21 +1,22 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Search, X } from "lucide-react";
 import { useGetSearchResultsQuery } from "#api/tmdbApi";
 import SearchItems from "#components/SearchItems";
 
 function SearchBar() {
-  const [isSearchOpen, setIsSearchOpen] = React.useState(false)
-  const [searchKey, setSearchKey] = React.useState("");
-  const [isDebounce, setIsDebounce] = React.useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchKey, setSearchKey] = useState("");
+  const [isDebounce, setIsDebounce] = useState("");
 
+  
   useEffect(() => {
     const handler = setTimeout(() => {
-      setIsDebounce(searchKey)
-    }, 500)
-
-    return () => clearTimeout(handler)
+      setIsDebounce(searchKey);
+    }, 500);
+    
+    return () => clearTimeout(handler);
   }, [searchKey])
-
+  
 
   const searchType = searchKey.length > 2 ? "multi" : "";
 
@@ -39,6 +40,7 @@ function SearchBar() {
     setIsSearchOpen(false);
     setSearchKey("");
   }
+
 
   return (
     <section>
@@ -85,7 +87,7 @@ function SearchBar() {
             <div className="relative">
               <SearchItems
                 close={searchCleanUp}
-                query={searchKey.toLowerCase()}
+                query={searchKey}
                 data={data}
               />
             </div>)
