@@ -1,30 +1,22 @@
 import React from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import { allResults } from '#features/searchResult';
 
 function SearchItems({
     close,
     query,
     data = {}
 }) {
-
+    
     const navigate = useNavigate();
-    const {results = []} = data
+    const {results = [], page: page_no} = data
 
-    const dispatch = useDispatch();
 
     const handlerShowAllResults = () => {
-            dispatch(allResults(data));
-            navigate(`/search/${query}`);
+            navigate(`/search/${query}/${page_no}`);
             close();
     }
 
-    const searchData = useSelector(state => state.searchResult.results);
-
-    console.log("Data : ", searchData)
-
-    console.log("Results :", results)
+    console.log("Results :", results);
 
     return (
         <section
