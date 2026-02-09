@@ -19,7 +19,7 @@ function GridList({
     });
 
     const { data, isLoading, isError, error } = discoverQuery(page);
-
+    console.log("diuscovery: ", data)
     const allData = data?.results ?? [];
 
     console.log("All Data:", allData);
@@ -82,7 +82,7 @@ function GridList({
                     </button>
 
                     <span className="px-4 py-2 bg-gray-200 text-gray-700 rounded">
-                        Page {page}
+                        Page {page} / {data?.total_pages}
                     </span>
                     <button
                         onClick={handleNextPage}
