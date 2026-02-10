@@ -34,8 +34,11 @@ function HeroSectionViewPage({
                         key={selectedData?.id}>
                         <img
                             className='absolute inset-0 w-full h-full object-cover brightness-50'
-                            src={ selectedData?.backdrop_path ?  `https://image.tmdb.org/t/p/w1280/${selectedData?.backdrop_path}` : "https://placehold.co/300x450?text=No+Image"}
+                            src={ selectedData?.backdrop_path ?  `https://image.tmdb.org/t/p/w780/${selectedData?.backdrop_path}` : "https://placehold.co/300x450?text=No+Image"}
                             alt={selectedData?.name || selectedData?.title}
+                            loading="eager"
+                            decoding="async"
+                            fetchPriority='high'
                         />
 
                         < div className='absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-transparent' />
