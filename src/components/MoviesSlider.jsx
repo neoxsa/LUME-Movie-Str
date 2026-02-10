@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react"
-import MovieCard from "./MovieCard"
+const MovieCard = React.lazy(() => import("./MovieCard"))
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
 import "swiper/css"
@@ -96,13 +96,25 @@ function MoviesSlider({
           </SwiperSlide>
         ))}
       </Swiper>
-      <button ref={prevButtonRef} className="custom-prev"><ArrowBigLeftDash className="text-red-400" /></button>
-      <button ref={nextButtonRef} className="custom-next"><ArrowBigRightDash className="text-red-400" /></button>
+      <button
+        aria-label='Previous button'
+        ref={prevButtonRef}
+        className="custom-prev">
+        <ArrowBigLeftDash className="text-red-400" />
+      </button>
+      <button
+        aria-label='Previous button'
+        ref={nextButtonRef}
+        className="custom-next">
+        <ArrowBigRightDash className="text-red-400" />
+      </button>
 
       {
         btnClickAction && (
           <div className="flex w-full justify-center items-center">
-            <button className="mt-4 px-6 py-2 cursor-pointer bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors"
+            <button
+            aria-label="Show all"
+            className="mt-4 px-6 py-2 cursor-pointer bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors"
               onClick={() => navigate(btnClickAction)}
             >
               Show All
