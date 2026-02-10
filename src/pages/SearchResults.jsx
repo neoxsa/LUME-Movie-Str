@@ -63,17 +63,18 @@ function SearchResults() {
           onClick={handlerPrev}
           disabled={pageNo <= 1}
           className="px-4 py-2 bg-red-500 text-white cursor-pointer rounded disabled:opacity-50"
-          >
+        >
           Prev
         </button>
-        <span className="px-4 py-2 bg-gray-200 text-gray-700 rounded">
-        {pageNo} / {data?.total_pages || 1}
+
+        <span className="px-4 py-2 bg-gray-200 text-gray-800 rounded">
+          Page {data?.page || 1} of {data?.total_pages || 1}
         </span>
         <button
           onClick={handlerNext}
           disabled={pageNo >= (data?.total_pages || 1)}
           className="px-4 py-2 bg-red-500 text-white cursor-pointer rounded disabled:opacity-50"
-          >
+        >
           Next
         </button>
       </div>
