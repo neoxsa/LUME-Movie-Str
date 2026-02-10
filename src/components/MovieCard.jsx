@@ -12,13 +12,11 @@ const MovieCard = memo(function MovieCard({
   mediaType
 }) {
 const navigate = useNavigate();
-console.log("Media Type in MovieCard:", mediaType);
-
 
   return (
     <article
       onClick={()=> navigate(`/category/${mediaType}/${selectedId}`)}
-      className={`w-full max-w-55 md:max-w-65 cursor-pointer ${className}`}
+      className={`w-full max-w-55 md:max-w-[212px] cursor-pointer ${className}`}
     >
       {/* Poster */}
       <div className="relative overflow-hidden rounded-2xl">
@@ -27,11 +25,11 @@ console.log("Media Type in MovieCard:", mediaType);
           alt={title}
           loading="lazy"
           decoding="async"
-          className="aspect-2/3 w-full object-cover transition-transform duration-300 hover:scale-105"
+          className="aspect-2/3 w-[212px] object-cover transition-transform duration-300 hover:scale-105"
         />
 
         {/* Content */}
-        <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center bg-black/70 px-4 py-2 text-sm backdrop-blur">
+        <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center bg-black/70 px-4 py-2 text-sm backdrop-blur ">
           <span className="flex items-center gap-1 text-amber-300 font-bold">
             <Star size={14} />
             {rating}
