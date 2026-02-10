@@ -17,7 +17,6 @@ function NavBar() {
         setIsMenuOpen(false)
     }
 
-
     const navItems = [
         {
             id: 1,
@@ -46,10 +45,12 @@ function NavBar() {
             className=" sticky z-50 top-2 md:top-4  mx-auto w-[95%] max-w-7xl px-3 md:px-6 py-3  bg-black/40 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/40 rounded-2xl transition-all duration-300"
         >
             <div className="flex items-center justify-between">
-                <Link to="/" className="flex items-center">
-                    <img src={logo} alt="logo" className="h-10 w-auto" />
-                </Link>
+                <div className={isMenuOpen && 'bg-red-500'}>
+                    <Link to="/" className="flex items-center">
+                        <img src={logo} alt="logo" className="w-[102px] h-[37px]" />
+                    </Link>
 
+                </div>
                 {/* Nav links */}
 
                 <div className='flex justify-center items-center gap-2 sm:gap-5'>
@@ -80,10 +81,10 @@ function NavBar() {
                                 />
                             </li>
                         ))}
-
-
                     </ul>
+
                     {/* Search Bar */}
+                    
                     <SearchBar />
 
                     {/* Hamburger Menu */}
