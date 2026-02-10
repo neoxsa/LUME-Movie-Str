@@ -65,11 +65,12 @@ function HeroSection() {
 
                                                 {/* Background image */}
                                                 <img
-                                                    src={`https://image.tmdb.org/t/p/w1280/${media?.backdrop_path}`}
+                                                    src={`https://image.tmdb.org/t/p/w780/${media?.backdrop_path}`}
                                                     alt={media?.name || media?.title}
                                                     className="w-full h-[70vh] xl:h-[90vh] object-cover"
-                                                    loading="lazy"
+                                                    loading="eager"
                                                     decoding="async"
+                                                    fetchPriority='high'
                                                 />
 
                                                 <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-transparent" />
@@ -96,6 +97,7 @@ function HeroSection() {
 
                                                         <button
                                                             onClick={() => navigate(`/category/${media?.media_type}/${media?.id}`)}
+                                                            aria-label="Watch now"
                                                             className="mt-4 inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 transition px-6 py-3 rounded-lg text-black font-bold cursor-pointer">
                                                             Watch Now
                                                         </button>
@@ -104,8 +106,18 @@ function HeroSection() {
                                             </SwiperSlide>
                                         ))}
                                     </Swiper>
-                                    <button ref={prevButtonRef} className="custom-prev"><ArrowBigLeftDash className="text-red-400" /></button>
-                                    <button ref={nextButtonRef} className="custom-next"><ArrowBigRightDash className="text-red-400" /></button>
+                                    <button
+                                        aria-label='Previous button'
+                                        ref={prevButtonRef}
+                                        className="custom-prev">
+                                        <ArrowBigLeftDash className="text-red-400" />
+                                    </button>
+                                    <button
+                                        aria-label='Next button'
+                                        ref={nextButtonRef}
+                                        className="custom-next">
+                                        <ArrowBigRightDash className="text-red-400" />
+                                    </button>
                                 </>
                             )}
 
