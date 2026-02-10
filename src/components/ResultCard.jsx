@@ -26,7 +26,6 @@ function ResultCard({
                     {media_type === "movie" ? "Movie" :media_type === "tv" ? "TV" : "Actor"}
                 </span>
             <p className='text-gray-400 text-xs'>
-                {date}
                 {date ? new Date(date).getFullYear() : "N/A"}
             </p>
         </div>)
