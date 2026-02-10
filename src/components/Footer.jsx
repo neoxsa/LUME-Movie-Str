@@ -5,21 +5,21 @@ import { Facebook, Instagram, Twitter, Send } from 'lucide-react'
 
 function Footer() {
     return (
-        <footer className='flex flex-col items-center justify-between px-6 py-4 bg-gray-900 text-white w-full p-6 mt-12 space-y-6'>
+        <footer className='flex flex-col items-center justify-between px-6 py-4 bg-[#0d1321] text-white w-full p-6 mt-12 space-y-6'>
             {/* All Contents */}
             <div className='flex flex-col md:flex-row w-full max-w-7xl mx-auto justify-between items-center gap-6 md:gap-0 mt-6 mb-4'>
 
                 {/* Footer content */}
                 <div className='flex flex-col'>
-                    <img className='w-40 h-auto' src={logo} alt="LUME Logo" />
 
+                    <img className='w-[127px] h-[47px]' src={logo} alt="LUME Logo" />
                     <p className='text-white/90 mt-2'>Your ultimate destination for movies and TV shows</p>
                 </div>
 
                 {/* Navigation links */}
                 <div className='grid grid-cols-2 md:grid-cols-3 gap-6'>
                     {/* Navigation links */}
-                    <ul className='text-xl flex flex-col gap-3'>
+                    <ul className='text-lg flex flex-col gap-3'>
                         <h2 className='text-white/90 font-semibold underline mb-2'>Links</h2>
                         <li>
                             <NavLink to='/' className='text-white/90 hover:text-white transition-colors duration-200 block'>
@@ -39,7 +39,7 @@ function Footer() {
                     </ul>
 
                     {/* Term & Conditions links */}
-                    <ul className='text-xl flex flex-col gap-3'>
+                    <ul className='text-lg flex flex-col gap-3'>
                         <h2 className='text-white/90 font-semibold underline mb-2'>Terms & Conditions</h2>
                         <li>
                             <NavLink to='/terms' className='text-white/90 hover:text-white transition-colors duration-200 block'>
@@ -85,7 +85,7 @@ function Footer() {
 
             {/* Copyright */}
             <div className='text-center w-full px-6 border-t border-white/10 pt-4'>
-                <p>© 2026 LUME- Discover & Watch. All rights reserved.</p>
+                <p>© 2026 LUME - Discover & Watch. All rights reserved.</p>
             </div>
         </footer>
     )
