@@ -1,7 +1,7 @@
-import HeroSection from '#components/HeroSection'
+import React from 'react'
+const HeroSection = React.lazy(() => import('#components/HeroSection'))
 import MoviesSlider from '#components/MoviesSlider'
 import { useGetAllTrendingQuery, useGetDiscoverMoviesQuery, useGetDiscoverTVShowsQuery } from "#api/tmdbApi"
-import React from 'react'
 import Newsletter from '#components/Newsletter';
 
 export default function Home() {
