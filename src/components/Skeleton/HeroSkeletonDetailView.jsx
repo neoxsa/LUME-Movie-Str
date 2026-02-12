@@ -2,7 +2,7 @@ import React from 'react'
 
 function HeroSkeletonDetailView() {
     return (
-        <div className="elative -top-17 w-full h-full lg:h-[90vh] overflow-hidden bg-black">
+        <div className="relative -top-17 w-full h-full lg:h-[90vh] overflow-hidden bg-black">
 
             <div className="inset-0 flex h-full w-full items-center justify-center flex-col lg:flex-row gap-5 mt-25 ">
                 {/* Card */}
