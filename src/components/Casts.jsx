@@ -1,18 +1,43 @@
-import React from "react";
 
-function Casts({ cast = [] }) {
+function Casts({
+  cast = [],
+  isLoading,
+  isError,
+  error,
+}) {
+
 
   return (
     <section className="text-white space-y-6 mx-6 md:mx-10 mb-12">
       <div className="flex items-center gap-3">
-        <div className="w-1 h-8 bg-red-600 rounded-full"></div>
+        <div className="w-1 h-8 bg-red-600 rounded-full" />
         <h3 className="text-2xl md:text-3xl font-bold">Cast & Crew</h3>
       </div>
 
       <div className="flex gap-6 overflow-x-auto pb-4 custom-scrollbar">
         {
-          cast.length === 0 ?
-            (<p className="text-white/50">No Data Found</p>)
+          isError &&
+          (<p className="text-red-500/50">Something went wrong : {error}</p>)
+        }
+
+        {
+          !isLoading && !isError && cast.length === 0
+            ? <p className="text-white/50">No cast data available</p>
+            : null
+        }
+
+        {
+          isLoading ?
+            Array.from({ length: 10 }).map((index) => (
+              <div
+                key={index}
+                className="min-w-35 flex flex-col gap-3"
+              >
+                <div className="w-32 h-40 rounded-xl bg-gray-800 animate-pulse" />
+                <p className="w-32 h-4 bg-gray-800 rounded-md animate-pulse" />
+              </div>
+            ))
+
             :
             cast.map((member) => (
               <div
@@ -44,6 +69,7 @@ function Casts({ cast = [] }) {
               </div>
             ))
         }
+
       </div>
     </section>
   );
