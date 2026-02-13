@@ -45,7 +45,7 @@ function NavBar() {
             className=" sticky z-50 top-2 md:top-4  mx-auto w-[95%] max-w-7xl px-3 md:px-6 py-3  bg-black/40 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/40 rounded-2xl transition-all duration-300"
         >
             <div className="flex items-center justify-between">
-                <div className={isMenuOpen && 'bg-red-500'}>
+                <div className={isMenuOpen === true ? 'bg-red-500' : ""}>
                     <Link to="/" className="flex items-center">
                         <img src={logo} alt="logo" className="w-[102px] h-[37px]" />
                     </Link>
@@ -84,7 +84,7 @@ function NavBar() {
                     </ul>
 
                     {/* Search Bar */}
-                    
+
                     <SearchBar />
 
                     {/* Hamburger Menu */}
