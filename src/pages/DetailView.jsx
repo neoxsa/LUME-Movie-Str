@@ -1,5 +1,5 @@
 import React from 'react'
-const HeroSectionViewPage = React.lazy(() => import('#components/HeroSectionViewPage'))
+import HeroSectionViewPage from '#components/HeroSectionViewPage'
 import { useParams } from 'react-router-dom'
 import { useGetMovieTrailerQuery, useGetMoviesByIDQuery, useGetTVShowTrailerQuery, useGetTVShowsByIDQuery, useGetMovieCreditsQuery, useGetTVCreditsQuery } from '#api/tmdbApi'
 import Casts from '#components/Casts';
