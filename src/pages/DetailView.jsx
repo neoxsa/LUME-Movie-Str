@@ -7,27 +7,37 @@ import Casts from '#components/Casts';
 function DetailView() {
   const { type, id } = useParams();
 
-  // console.log("DetailView Params - Type:", type, "ID:", id);
+  const isMovie = type === 'movie';
+  const isTV = type === 'tv';
 
   const selectedId = Number(id);
 
   // Movies Id:
-  const { data: selectedData, isLoading: isMovieLoading, isError: isMovieError, error: movieError } = useGetMoviesByIDQuery(selectedId)
-  console.log("Selected Data:", selectedData);
+  const { data: selectedData, isLoading: isMovieLoading, isError: isMovieError, error: movieError } = useGetMoviesByIDQuery(selectedId, { skip: !isMovie })
 
   // TV Shows Id:
-  const { data: selectedTVData, isLoading: isTVLoading, isError: isTVError, error: tvError } = useGetTVShowsByIDQuery(selectedId);
+  const { data: selectedTVData, isLoading: isTVLoading, isError: isTVError, error: tvError } = useGetTVShowsByIDQuery(selectedId, { skip: !isTV });
 
   // // Movie Trailer:
-  const { data: trailerData, isLoading: isMovieTrailerLoading, isError: isMovieTrailerError, error: movieTrailerError } = useGetMovieTrailerQuery(selectedId);
-
-  const trailerKey = trailerData?.results?.length ? trailerData.results.find(trailer => trailer.name)?.key : null;
+  const { data: trailerData, isLoading: isMovieTrailerLoading, isError: isMovieTrailerError, error: movieTrailerError } = useGetMovieTrailerQuery(selectedId, { skip: !isMovie });
 
   // // TV Show Trailer:
   const { data: tvTrailerData, isLoading: isTVTrailerLoading, isError: isTVTrailerError, error:
-    tvTrailerError } = useGetTVShowTrailerQuery({ series_id: selectedId, season_number: 1 });
+    tvTrailerError } = useGetTVShowTrailerQuery({ series_id: selectedId }, { skip: !isTV });
 
-  const tvTrailerKey = tvTrailerData?.results?.length > 0 ? tvTrailerData.results.find(trailer => trailer.name)?.key : null;
+
+  const getTrailerKey = (videos) => {
+    if (!videos) return null;
+
+    return (
+      videos.find(v => v.type === "Trailer")?.key ||
+      videos.find(v => v.name.toLowerCase().includes("trailer"))?.key ||
+      null
+    );
+  };
+
+  const movieTrailerKey = getTrailerKey(trailerData?.results);
+  const tvTrailerKey = getTrailerKey(tvTrailerData?.results);
 
   // Credits
   const { data: movieCredits, isLoading: isMovieCreditsLoading, isError: isMovieCreditsError, error: movieCreditsErr } = useGetMovieCreditsQuery(selectedId);
@@ -39,7 +49,7 @@ function DetailView() {
       <>
         <HeroSectionViewPage
           selectedData={selectedData}
-          trailerKey={trailerKey}
+          trailerKey={movieTrailerKey}
           isLoading={isMovieLoading}
           isError={isMovieError}
           error={movieError}
@@ -71,8 +81,8 @@ function DetailView() {
         <Casts
           cast={tvCredits?.cast}
           isLoading={isTVCreditsLoading}
-          isError={isMovieCreditsError || isTvCreditsError}
-          error={movieCreditsErr || tvCreditsErr}
+          isError={isTvCreditsError}
+          error={tvCreditsErr}
         />
       </>
     )
@@ -81,7 +91,7 @@ function DetailView() {
       <>
         <HeroSectionViewPage
           selectedData={selectedTVData || selectedData}
-          trailerKey={tvTrailerKey || trailerKey}
+          trailerKey={tvTrailerKey || movieTrailerKey}
           isLoading={isMovieLoading || isTVLoading}
           isError={isMovieError || isTVError}
           error={movieError || tvError}
