@@ -19,11 +19,11 @@ function DetailView() {
   const { data: selectedTVData, isLoading: isTVLoading, isError: isTVError, error: tvError } = useGetTVShowsByIDQuery(selectedId);
 
   // // Movie Trailer:
-  const { data: trailerData, isLoading: isMovieTrailerLoading, isError: isMovieTrailerError, error: movieTrailerError } = useGetMovieTrailerQuery(selectedId, { skip: !isMovie });
+  const { data: trailerData, isLoading: isMovieTrailerLoading, isError: isMovieTrailerError, error: movieTrailerError } = useGetMovieTrailerQuery(selectedId);
 
   // // TV Show Trailer:
   const { data: tvTrailerData, isLoading: isTVTrailerLoading, isError: isTVTrailerError, error:
-    tvTrailerError } = useGetTVShowTrailerQuery({ series_id: selectedId }, { skip: !isTV });
+    tvTrailerError } = useGetTVShowTrailerQuery({ series_id: selectedId });
 
 
   const getTrailerKey = (videos) => {
