@@ -52,7 +52,7 @@ export const apiSlice = createApi({
 
         // TV Shows Trailer Video
         getTVShowTrailer: builder.query({
-            query: ({ series_id, season_number }) => `tv/${series_id}/season/${season_number}/videos`
+            query: ({ series_id }) => `tv/${series_id}/videos`
         }),
 
         // Credits Movies
