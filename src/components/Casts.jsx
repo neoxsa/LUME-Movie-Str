@@ -16,8 +16,8 @@ function Casts({
 
       <div className="flex gap-6 overflow-x-auto pb-4 custom-scrollbar">
         {
-          isError &&
-          (<p className="text-red-500/50">Something went wrong : {error?.status} - {error?.data?.status_message} </p>)
+          isError && cast.length === 0 &&
+          (<p className="text-red-500/50 p-2 mx-2">{error?.status} - {error?.data?.status_message} </p>)
         }
 
         {
