@@ -13,10 +13,10 @@ function DetailView() {
   const selectedId = Number(id);
 
   // Movies Id:
-  const { data: selectedData, isLoading: isMovieLoading, isError: isMovieError, error: movieError } = useGetMoviesByIDQuery(selectedId, { skip: !isMovie })
+  const { data: selectedData, isLoading: isMovieLoading, isError: isMovieError, error: movieError } = useGetMoviesByIDQuery(selectedId)
 
   // TV Shows Id:
-  const { data: selectedTVData, isLoading: isTVLoading, isError: isTVError, error: tvError } = useGetTVShowsByIDQuery(selectedId, { skip: !isTV });
+  const { data: selectedTVData, isLoading: isTVLoading, isError: isTVError, error: tvError } = useGetTVShowsByIDQuery(selectedId);
 
   // // Movie Trailer:
   const { data: trailerData, isLoading: isMovieTrailerLoading, isError: isMovieTrailerError, error: movieTrailerError } = useGetMovieTrailerQuery(selectedId, { skip: !isMovie });
@@ -44,7 +44,7 @@ function DetailView() {
 
   const { data: tvCredits, isLoading: isTVCreditsLoading, isError: isTvCreditsError, error: tvCreditsErr } = useGetTVCreditsQuery(selectedId);
 
-  if (type === 'movie') {
+  if (isMovie) {
     return (
       <>
         <HeroSectionViewPage
@@ -65,7 +65,7 @@ function DetailView() {
         />
       </>
     )
-  } else if (type === 'tv') {
+  } else if (isTV) {
     return (
       <>
         <HeroSectionViewPage
