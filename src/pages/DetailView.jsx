@@ -19,10 +19,10 @@ function DetailView() {
   const { data: selectedTVData, isLoading: isTVLoading, isError: isTVError, error: tvError } = useGetTVShowsByIDQuery(selectedId);
 
   // // Movie Trailer:
-  const { data: trailerData, isLoading: isMovieTrailerLoading, isError: isMovieTrailerError, error: movieTrailerError } = useGetMovieTrailerQuery(selectedId);
+  const { data: trailerData, isError: isMovieTrailerError, error: movieTrailerError } = useGetMovieTrailerQuery(selectedId);
 
   // // TV Show Trailer:
-  const { data: tvTrailerData, isLoading: isTVTrailerLoading, isError: isTVTrailerError, error:
+  const { data: tvTrailerData, isError: isTVTrailerError, error:
     tvTrailerError } = useGetTVShowTrailerQuery({ series_id: selectedId });
 
 
@@ -53,7 +53,6 @@ function DetailView() {
           isLoading={isMovieLoading}
           isError={isMovieError}
           error={movieError}
-          isTrailerLoading={isMovieTrailerLoading}
           isTrailerError={isMovieTrailerError}
           trailerError={movieTrailerError}
         />
@@ -74,7 +73,6 @@ function DetailView() {
           isLoading={isTVLoading}
           isError={isTVError}
           error={tvError}
-          isTrailerLoading={isTVTrailerLoading}
           isTrailerError={isTVTrailerError}
           trailerError={tvTrailerError}
         />
@@ -95,7 +93,6 @@ function DetailView() {
           isLoading={isMovieLoading || isTVLoading}
           isError={isMovieError || isTVError}
           error={movieError || tvError}
-          isTrailerLoading={isMovieTrailerLoading || isTVTrailerLoading}
           isTrailerError={isMovieTrailerError || isTVTrailerError}
           trailerError={movieTrailerError || tvTrailerError}
         />
