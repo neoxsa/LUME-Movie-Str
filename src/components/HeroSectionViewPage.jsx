@@ -9,12 +9,12 @@ function HeroSectionViewPage({
     isLoading,
     isError,
     error,
-    isTrailerLoading,
     isTrailerError,
     trailerError
 }) {
 
     const [isTrailerOpen, setIsTrailerOpen] = React.useState(false);
+    console.log(selectedData)
 
     const date = new Date(selectedData?.release_date || selectedData?.first_air_date);
 
@@ -33,8 +33,15 @@ function HeroSectionViewPage({
             }
 
             {
-                isError &&
-                (<p className="text-red-500/50">Something went wrong : {error?.status} - {error?.data?.status_message} </p>)
+                (isError || isTrailerError) && !selectedData && (
+                    <div className="absolute inset-0 z-50 flex items-center justify-center">
+                        <div className="text-center p-6 bg-black/95 rounded-xl">
+                            <p className="text-red-500/50 text-xl">Error Loading Data</p>
+                            <p className="text-red-500/50 mt-2">{trailerError?.status}  {trailerError?.data?.status_message}</p>
+                            <p className="text-red-500/50 mt-2">{error?.status}  {error?.data?.status_message}</p>
+                        </div>
+                    </div>
+                )
             }
 
             {
