@@ -17,7 +17,7 @@ function Casts({
       <div className="flex gap-6 overflow-x-auto pb-4 custom-scrollbar">
         {
           isError &&
-          (<p className="text-red-500/50">Something went wrong : {error}</p>)
+          (<p className="text-red-500/50">Something went wrong : {error?.status} - {error?.data?.status_message} </p>)
         }
 
         {
@@ -28,7 +28,7 @@ function Casts({
 
         {
           isLoading ?
-            Array.from({ length: 10 }).map((index) => (
+            Array.from({ length: 10 }).map((_, index) => (
               <div
                 key={index}
                 className="min-w-35 flex flex-col gap-3"

@@ -1,12 +1,17 @@
-import { Play } from 'lucide-react';
 import React from 'react'
+import { Play } from 'lucide-react';
 import TrailerModal from './TrailerModal';
 import HeroSkeletonDetailView from './Skeleton/HeroSkeletonDetailView';
 
 function HeroSectionViewPage({
     selectedData,
     trailerKey,
-    isLoading = true,
+    isLoading,
+    isError,
+    error,
+    isTrailerLoading,
+    isTrailerError,
+    trailerError
 }) {
 
     const [isTrailerOpen, setIsTrailerOpen] = React.useState(false);
@@ -28,13 +33,18 @@ function HeroSectionViewPage({
             }
 
             {
+                isError &&
+                (<p className="text-red-500/50">Something went wrong : {error?.status} - {error?.data?.status_message} </p>)
+            }
+
+            {
                 !isLoading ? (
                     <div
                         className='relative w-full h-full lg:pt-10 xl:pt-20'
                         key={selectedData?.id}>
                         <img
                             className='absolute inset-0 w-full h-full object-cover brightness-50'
-                            src={ selectedData?.backdrop_path ?  `https://image.tmdb.org/t/p/w780/${selectedData?.backdrop_path}` : "https://placehold.co/300x450?text=No+Image"}
+                            src={selectedData?.backdrop_path ? `https://image.tmdb.org/t/p/w780/${selectedData?.backdrop_path}` : "https://placehold.co/300x450?text=No+Image"}
                             alt={selectedData?.name || selectedData?.title}
                             loading="eager"
                             decoding="async"
@@ -48,11 +58,15 @@ function HeroSectionViewPage({
                                 <div className='relative group shrink-0 mt-25 lg:mt-0'>
                                     <img
                                         className='w-48 md:w-64 lg:w-80 rounded-2xl shadow-2xl border border-white/20'
-                                        src={ selectedData?.poster_path ? `https://image.tmdb.org/t/p/w400/${selectedData?.poster_path}` : "https://placehold.co/300x450?text=No+Image"}
+                                        src={selectedData?.poster_path ? `https://image.tmdb.org/t/p/w400/${selectedData?.poster_path}` : "https://placehold.co/300x450?text=No+Image"}
                                         alt={selectedData?.name || selectedData?.title}
+                                        loading="eager"
+                                        decoding='async'
+                                        fetchPriority='high'
                                     />
                                     <button
                                         onClick={() => setIsTrailerOpen(!isTrailerOpen)}
+                                        aria-label="Play Button"
                                         className='absolute inset-0 z-20 flex items-center justify-center bg-black/40 rounded-2xl opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity cursor-pointer'>
                                         <div className='w-16 h-16 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 active:bg-red-700 transition-colors shadow-lg'>
                                             <Play className='w-6 h-6 text-white ml-1' />
