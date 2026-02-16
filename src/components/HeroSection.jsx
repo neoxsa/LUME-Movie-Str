@@ -98,7 +98,7 @@ function HeroSection() {
                                                         <button
                                                             onClick={() => navigate(`/category/${media?.media_type}/${media?.id}`)}
                                                             aria-label="Watch now"
-                                                            className="mt-4 inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 transition px-6 py-3 rounded-lg text-black font-bold cursor-pointer">
+                                                            className="mt-4 inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 transition px-6 py-3 rounded-lg text-amber-50 font-bold cursor-pointer">
                                                             Watch Now
                                                         </button>
                                                     </div>
