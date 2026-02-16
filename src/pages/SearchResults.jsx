@@ -47,14 +47,27 @@ function SearchResults() {
 
           <Link
             key={item.id}
-            to={item?.media_type !== "person" ? `/category/${item?.media_type}/${item.id}` : `/category/${item?.media_type}/${item.id}`}
+            to={item?.media_type !== "person" ? `/category/${item?.media_type}/${item.id}` : ``}
           >
-            <ResultCard
-              image={item.poster_path || item.profile_path}
+            {
+              item?.media_type === "person" ?
+              <Link
+              to= ""
+              >
+              <ResultCard
+              image={item.profile_path}
               title={item.title || item.name}
               media_type={item.media_type}
-              date={item.release_date || item.first_air_date}
+              date={console.log(item.known_for.map(i => i.title))}
             />
+              </Link>
+            :  <ResultCard
+            image={item.poster_path}
+            title={item.title || item.name}
+            media_type={item.media_type}
+            date={item.release_date || item.first_air_date}
+          />
+            }
           </Link>
         ))}
       </div>
