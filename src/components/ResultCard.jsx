@@ -4,10 +4,12 @@ function ResultCard({
     image,
     title,
     media_type,
-    date
+    date,
+    onClick
 }) {
     return (
         <div
+            onClick={onClick}
             className='group cursor-pointer'>
             <div className='aspect-2/3 bg-gray-800 rounded-lg overflow-hidden'>
                 <img
@@ -23,8 +25,8 @@ function ResultCard({
                 {title}
             </h3>
             <span className='text-red-400 text-xs font-medium uppercase tracking-wide'>
-                    {media_type === "movie" ? "Movie" :media_type === "tv" ? "TV" : "Actor"}
-                </span>
+                {media_type === "movie" ? "Movie" : media_type === "tv" ? "TV" : "Actor"}
+            </span>
             <p className='text-gray-400 text-xs'>
                 {date ? new Date(date).getFullYear() : "N/A"}
             </p>
