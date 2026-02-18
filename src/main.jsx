@@ -5,7 +5,7 @@ import App from './App.jsx'
 import { Provider } from 'react-redux'
 import store from '#app/store.js'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import { Home, Movies, DetailView, TVShows, Contact, SearchResults } from '#pages/index.js'
+import { Home, Movies, DetailView, TVShows, Contact, SearchResults, PersonKnownFor} from '#pages/index.js'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +16,7 @@ const router = createBrowserRouter(
       <Route path='/category/:type/:id' element={<DetailView />} />
       <Route path='/contact' element={<Contact />} />
       <Route path='/search/:query/:page_no?' element={<SearchResults />} />
+      <Route path='/search/:person_name/movies&shows' element={<PersonKnownFor />} />
     </Route>
   )
 )
