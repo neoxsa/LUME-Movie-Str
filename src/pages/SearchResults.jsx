@@ -2,11 +2,14 @@ import React from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import ResultCard from '#components/ResultCard';
 import { useGetSearchResultsQuery } from '#api/tmdbApi';
+import { useDispatch } from 'react-redux';
+import { setResult } from '#features/searchResult';
 
 
 function SearchResults() {
   const { query, page_no } = useParams()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const pageNo = Number(page_no) || 1
 
@@ -20,8 +23,6 @@ function SearchResults() {
       skip: !query,
     }
   );
-
-  console.log("Data :", query, data)
 
   // prev btn handler
   const handlerPrev = () => {
@@ -38,38 +39,57 @@ function SearchResults() {
     navigate(`/search/${query}/${nextPage}`)
   }
 
+  // person data handler
+  const personDataHandler = (item) => {
+    dispatch(setResult(item))
+
+    const name = item?.name || item.original_name
+
+    if(!name) return;
+
+    navigate(`/search/${encodeURIComponent(name?.toLowerCase())}/movies&shows`);
+  }
+
   return (
     <section>
       <div className='h-1 w-full bg-red-500 mt-10'></div>
       <h1 className='text-2xl font-bold m-4 xl:m-10'>Search Results For : <span className='text-red-400'>{query}</span>, results found <span className='text-red-400'>{data?.total_results || 0}</span></h1>
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 m-4 xl:m-10'>
-        {data?.results?.map((item) => (
 
-          <Link
-            key={item.id}
-            to={item?.media_type !== "person" ? `/category/${item?.media_type}/${item.id}` : ``}
-          >
-            {
-              item?.media_type === "person" ?
-              <Link
-              to= ""
-              >
-              <ResultCard
-              image={item.profile_path}
-              title={item.title || item.name}
-              media_type={item.media_type}
-              date={console.log(item.known_for.map(i => i.title))}
-            />
-              </Link>
-            :  <ResultCard
-            image={item.poster_path}
-            title={item.title || item.name}
-            media_type={item.media_type}
-            date={item.release_date || item.first_air_date}
-          />
+        {
+          data?.results.map((item) => {
+
+            if (!item.poster_path && !item.profile_path) return null;
+            if (item.media_type === "company") return null;
+
+            if (item.media_type === "person") {
+              return <ResultCard
+                key={item?.id}
+                onClick={() => personDataHandler(item)}
+                image={item.profile_path}
+                title={item.original_name || item.name}
+                media_type={item.media_type}
+              />
+
             }
-          </Link>
-        ))}
+
+            return (
+              <Link
+                key={item?.id}
+                to={`/category/${item?.media_type}/${item.id}`}
+              >
+                <ResultCard
+                  image={item.poster_path}
+                  title={item.title || item.name}
+                  media_type={item.media_type}
+                  date={item.release_date || item.first_air_date}
+                />
+              </Link>
+            )
+          })
+        }
+
+
       </div>
       <div className='w-full flex justify-center items-center gap-5'>
         <button
