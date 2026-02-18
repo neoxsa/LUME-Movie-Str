@@ -4,6 +4,7 @@ import DetailView from "./DetailView";
 import TVShows from "./TVShows";
 import Contact from "./Contact";
 import SearchResults from "./SearchResults";
+import PersonKnownFor from "./PersonKnownFor";
 
 export {
     Home,
@@ -11,5 +12,6 @@ export {
     DetailView,
     TVShows,
     Contact,
-    SearchResults
+    SearchResults,
+    PersonKnownFor,
 }
