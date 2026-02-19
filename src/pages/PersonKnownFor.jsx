@@ -1,4 +1,4 @@
-import GridList from '#components/GridList'
+import { useGetPersonMovieAndTvCreditQuery } from '#api/tmdbApi'
 import PersonProfile from '#components/PersonProfile'
 import ResultCard from '#components/ResultCard'
 import React from 'react'
@@ -8,9 +8,12 @@ function PersonKnownFor() {
 
   const personData = useSelector(state => state.searchResult.result)
 
-  console.log(personData)
+  const { data: movieAndTvData } = useGetPersonMovieAndTvCreditQuery(personData?.id)
 
-  const personKnownFor = personData?.known_for
+  console.log("Movies & Tv : ", movieAndTvCredits);
+
+
+  const movieAndTvCredits  = movieAndTvData?.cast;
 
   return (
     <section className='space-y-15'>
@@ -21,8 +24,8 @@ function PersonKnownFor() {
       <span className='block h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent' />
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 m-4 xl:m-10'>
 
-        {
-          personKnownFor.map((data) => (
+      {
+          movieAndTvCredits?.map((data) => (
             <ResultCard
               key={data.id}
               image={data.poster_path}
@@ -34,6 +37,7 @@ function PersonKnownFor() {
             />
           ))
         }
+  
       </div>
 
 
