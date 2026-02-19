@@ -1,7 +1,7 @@
 import React from 'react'
 
 function PersonProfile({ imageUrl, name }) {
-  const hasImage = Boolean(imageUrl)
+  const hasImage = Boolean(imageUrl);
 
   return (
     <section className='flex flex-col items-center gap-4 mt-10 px-4'>
@@ -12,7 +12,6 @@ function PersonProfile({ imageUrl, name }) {
       </header>
 
       <div className='flex w-full items-center justify-center gap-4'>
-        <span className='hidden sm:block h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent' />
 
         <div className='relative flex items-center justify-center rounded-full bg-gradient-to-tr from-red-500/70 via-red-400/80 to-blue-500/80 p-[3px] shadow-lg shadow-red-900/40'>
           {hasImage ? (
@@ -29,7 +28,6 @@ function PersonProfile({ imageUrl, name }) {
           )}
         </div>
 
-        <span className='hidden sm:block h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent' />
       </div>
     </section>
   )
