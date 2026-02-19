@@ -68,9 +68,19 @@ export const apiSlice = createApi({
         // TV EPISODE GROUPS
         getTVEpGroup: builder.query({
             query: (tv_episode_group_id) => `tv/episode_group/${tv_episode_group_id}`
-        })
+        }),
+
+        // Person Movie & TV Credit
+        getPersonMovieAndTvCredit: builder.query({
+            query: (person_id) => `person/${person_id}/combined_credits`
+        }),
+       
+        // // Person TV Credit
+        // getPersonTVCredit: builder.query({
+        //     query: (person_id) => `person/${person_id}/tv_credits`
+        // })
     })
 })
 
-export const { useGetAllTrendingQuery, useGetDiscoverMoviesQuery, useGetMoviesByIDQuery, useGetTVShowsByIDQuery, useGetMovieTrailerQuery, useGetDiscoverTVShowsQuery, useGetTVShowTrailerQuery, useGetMovieCreditsQuery, useGetTVCreditsQuery, useGetTVEpGroupQuery, useGetSearchResultsQuery } = apiSlice
+export const { useGetAllTrendingQuery, useGetDiscoverMoviesQuery, useGetMoviesByIDQuery, useGetTVShowsByIDQuery, useGetMovieTrailerQuery, useGetDiscoverTVShowsQuery, useGetTVShowTrailerQuery, useGetMovieCreditsQuery, useGetTVCreditsQuery, useGetTVEpGroupQuery, useGetSearchResultsQuery, useGetPersonMovieAndTvCreditQuery } = apiSlice
 
