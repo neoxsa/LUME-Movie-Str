@@ -82,7 +82,7 @@ function HeroSectionViewPage({
                                 </div>
 
                                 <div className='text-white space-y-3 lg:space-y-6 max-w-2xl'>
-                                    <h1 className='text-2xl md:text-5xl lg:text-6xl font-bold leading-tight'>
+                                    <h1 className='text-2xl md:text-5xl lg:text-6xl font-bold text-red-400 leading-tight'>
                                         {selectedData?.name || selectedData?.original_name || selectedData?.title}
                                     </h1>
 
