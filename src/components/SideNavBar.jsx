@@ -7,7 +7,7 @@ function SideNavBar({
 }) {
   return (
     <section 
-    onClick={()=> closeSidebar}
+    onClick={closeSidebar}
     className='absolute top-17 z-50 left-0 w-full h-screen'>
       <nav className='absolute z-50 bg-linear-to-br from-gray-900/95 via-black/98 to-gray-900 border border-red-400 p-5 right-0 h-auto w-2/3 rounded-xl md:hidden space-y-5'>
         <ul className='flex flex-col gap-5'>
