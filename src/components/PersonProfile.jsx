@@ -6,7 +6,7 @@ function PersonProfile({ imageUrl, name }) {
   return (
     <section className='flex flex-col items-center gap-4 mt-10 px-4'>
       <header className='text-center'>
-        <h1 className='text-2xl lg:text-3xl font-bold tracking-tight'>
+        <h1 className='text-2xl lg:text-3xl font-bold tracking-tight text-red-400'>
           {name}
         </h1>
       </header>
