@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 function Casts({
   cast = [],
@@ -6,7 +7,7 @@ function Casts({
   error,
 }) {
 
-
+console.log("cast:", cast)
   return (
     <section className="text-white space-y-6 mx-6 md:mx-10 mb-12">
       <div className="flex items-center gap-3">
@@ -40,8 +41,11 @@ function Casts({
 
             :
             cast.map((member) => (
+            <Link
+            key={member.id}
+            to={`/search/${member?.name}/${member?.id}/movies&shows`}
+            >
               <div
-                key={member.id}
                 className="min-w-35 flex flex-col gap-3 group cursor-pointer"
               >
                 <div className="relative w-32 h-40 rounded-xl overflow-hidden bg-gray-800 shadow-lg group-hover:shadow-2xl transition-all duration-300">
@@ -67,6 +71,7 @@ function Casts({
                   </p>
                 </div>
               </div>
+            </Link>
             ))
         }
 
