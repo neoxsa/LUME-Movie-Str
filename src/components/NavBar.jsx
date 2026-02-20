@@ -45,7 +45,7 @@ function NavBar() {
             className=" sticky z-50 top-2 md:top-4  mx-auto w-[95%] max-w-7xl px-3 md:px-6 py-3  bg-black/40 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/40 rounded-2xl transition-all duration-300"
         >
             <div className="flex items-center justify-between">
-                <div className={isMenuOpen === true ? 'bg-red-500' : ""}>
+                <div>
                     <Link to="/" className="flex items-center">
                         <img src={logo} alt="logo" className="w-[102px] h-[37px]" />
                     </Link>
@@ -61,7 +61,7 @@ function NavBar() {
                         isMenuOpen && (
                             <SideNavBar
                                 navItems={navItems}
-                                closeSidebar={closeSidebar()}
+                                closeSidebar={()=>closeSidebar()}
                             />
                         )
                     }
@@ -105,13 +105,13 @@ function NavBar() {
                     {/* Buttons */}
                     <div className="flex items-center gap-3">
                         <button
-                            className=" hidden md:inline-flex px-4 py-2  text-white/90 border border-white/20  bg-white/5 rounded-lg  hover:bg-white/10 transition text-sm font-medium"
+                            className=" hidden md:inline-flex px-4 py-2  text-white/90 border border-white/20  bg-white/5 rounded-lg  hover:bg-white/10 transition text-sm font-medium cursor-pointer"
                         >
                             Log In
                         </button>
 
                         <button
-                            className="hidden md:inline-flex px-4 py-2 bg-[#df2144]  text-black rounded-lg font-semibold text-sm  hover:bg-[#c81c3b] transition"
+                            className="hidden md:inline-flex px-4 py-2 bg-[#df2144]  text-black rounded-lg font-semibold text-sm  hover:bg-[#c81c3b] transition cursor-pointer"
                         >
                             Sign Up
                         </button>
