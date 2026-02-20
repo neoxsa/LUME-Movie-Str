@@ -16,7 +16,7 @@ const router = createBrowserRouter(
       <Route path='/category/:type/:id' element={<DetailView />} />
       <Route path='/contact' element={<Contact />} />
       <Route path='/search/:query/:page_no?' element={<SearchResults />} />
-      <Route path='/search/:person_name/movies&shows' element={<PersonKnownFor />} />
+      <Route path='/search/:person_name/:id/movies&shows' element={<PersonKnownFor />} />
     </Route>
   )
 )
