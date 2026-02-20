@@ -47,7 +47,7 @@ function SearchResults() {
 
     if(!name) return;
 
-    navigate(`/search/${encodeURIComponent(name?.toLowerCase())}/movies&shows`);
+    navigate(`/search/${encodeURIComponent(name?.toLowerCase())}/${item?.id}/movies&shows`);
   }
 
   return (
