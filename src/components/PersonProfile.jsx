@@ -1,33 +1,51 @@
 import React from 'react'
 
-function PersonProfile({ imageUrl, name }) {
+function PersonProfile({ imageUrl, name, bio }) {
   const hasImage = Boolean(imageUrl);
+  const hasBio = Boolean(bio?.trim());
 
   return (
-    <section className='flex flex-col items-center gap-4 mt-10 px-4'>
+    <section className='flex flex-col items-center gap-8 mt-10 px-4 pb-6 max-w-5xl mx-auto'>
       <header className='text-center'>
-        <h1 className='text-2xl lg:text-3xl font-bold tracking-tight text-red-400'>
-          {name}
+        <h1 className='text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-red-400 drop-shadow-sm'>
+          {name ?? 'Unknown'}
         </h1>
       </header>
 
-      <div className='flex w-full items-center justify-center gap-4'>
-
-        <div className='relative flex items-center justify-center rounded-full bg-gradient-to-tr from-red-500/70 via-red-400/80 to-blue-500/80 p-[3px] shadow-lg shadow-red-900/40'>
-          {hasImage ? (
-            <img
-              className='h-40 w-40 rounded-full object-cover  ring-4 ring-black/10'
-              src={imageUrl}
-              alt={name}
-              loading='lazy'
-            />
-          ) : (
-            <div className='flex h-32 w-32 items-center justify-center rounded-full bg-zinc-800 text-4xl font-semibold text-zinc-300'>
-              {name?.[0] ?? '?'}
-            </div>
-          )}
+      <div className='flex flex-col lg:flex-row w-full items-center lg:items-start justify-center gap-8 lg:gap-12'>
+        {/* Avatar with gradient ring */}
+        <div className='shrink-0'>
+          <div className='relative flex items-center justify-center rounded-full bg-linear-to-br from-red-500/80 via-red-400/90 to-amber-500/70 p-[3px] shadow-xl shadow-red-900/30 ring-2 ring-white/5'>
+            {hasImage ? (
+              <img
+                className='h-36 w-36 sm:h-44 sm:w-44 rounded-full object-cover transition-transform duration-300 hover:scale-[1.02]'
+                src={imageUrl}
+                alt={name}
+                loading='lazy'
+                decoding='async'
+              />
+            ) : (
+              <div className='flex h-36 w-36 sm:h-44 sm:w-44 items-center justify-center rounded-2xl bg-zinc-800/90 text-3xl sm:text-4xl font-semibold text-zinc-400'>
+                {name?.[0] ?? '?'}
+              </div>
+            )}
+          </div>
         </div>
 
+        {/* Biography */}
+        <div className='flex-1 w-full min-w-0 text-center lg:text-left border border-red-400 rounded-xl p-6'>
+          {hasBio ? (
+            <div className='max-h-48 sm:max-h-64 overflow-y-auto custom-scrollbar pr-2'>
+              <p className='text-base sm:text-lg text-white/90 leading-relaxed'>
+                {bio}
+              </p>
+            </div>
+          ) : (
+            <p className='text-sm text-white/50 italic'>
+              No biography available.
+            </p>
+          )}
+        </div>
       </div>
     </section>
   )
