@@ -2,14 +2,10 @@ import React from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import ResultCard from '#components/ResultCard';
 import { useGetSearchResultsQuery } from '#api/tmdbApi';
-import { useDispatch } from 'react-redux';
-import { setResult } from '#features/searchResult';
-
 
 function SearchResults() {
   const { query, page_no } = useParams()
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   const pageNo = Number(page_no) || 1
 
@@ -41,7 +37,6 @@ function SearchResults() {
 
   // person data handler
   const personDataHandler = (item) => {
-    dispatch(setResult(item))
 
     const name = item?.name || item.original_name
 
