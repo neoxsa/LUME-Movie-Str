@@ -105,7 +105,7 @@ function HeroSectionViewPage({
 
                                     <div className='space-y-3'>
                                         <h3 className='text-md lg:text-2xl font-semibold'>Overview</h3>
-                                        <p className='text-gray-200 leading-relaxed text-sm lg:text-lg'>{selectedData?.overview}</p>
+                                        <p className={`text-gray-200 leading-relaxed text-sm lg:text-lg h-60 ${selectedData?.overview?.length >= 500 ? 'overflow-y-scroll' : 'overflow-hidden'}`}>{selectedData?.overview}</p>
                                     </div>
 
                                     <button className='bg-red-600 hover:bg-red-700 active:bg-red-700 text-lg:text-base text-white font-semibold px-5 py-2.5 lg:px-8 lg:py-3 rounded-lg transition-colors shadow-lg hover:shadow-xl mb-8 lg:mb-2 cursor-pointer'>
