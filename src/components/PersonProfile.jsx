@@ -18,14 +18,14 @@ function PersonProfile({ imageUrl, name, bio }) {
           <div className='relative flex items-center justify-center rounded-full bg-linear-to-br from-red-500/80 via-red-400/90 to-amber-500/70 p-[3px] shadow-xl shadow-red-900/30 ring-2 ring-white/5'>
             {hasImage ? (
               <img
-                className='h-36 w-36 sm:h-44 sm:w-44 rounded-full object-cover transition-transform duration-300 hover:scale-[1.02]'
+                className='h-36 w-36 sm:h-70 sm:w-50 rounded-full object-cover transition-transform duration-300 hover:scale-[1.02]'
                 src={imageUrl}
                 alt={name}
                 loading='lazy'
                 decoding='async'
               />
             ) : (
-              <div className='flex h-36 w-36 sm:h-44 sm:w-44 items-center justify-center rounded-2xl bg-zinc-800/90 text-3xl sm:text-4xl font-semibold text-zinc-400'>
+              <div className='flex h-36 w-36 sm:h-70 sm:w-50 items-center justify-center rounded-full bg-zinc-800/90 text-3xl sm:text-6xl font-semibold text-zinc-400'>
                 {name?.[0] ?? '?'}
               </div>
             )}
@@ -37,7 +37,10 @@ function PersonProfile({ imageUrl, name, bio }) {
           {hasBio ? (
             <div className='max-h-48 sm:max-h-64 overflow-y-auto custom-scrollbar pr-2'>
               <p className='text-base sm:text-lg text-white/90 leading-relaxed'>
-                {bio}
+                <span className='font-bold text-lg sm:text-xl text-red-400'>Biography :</span>
+                <span className='block mt-2 text-sm sm:text-base text-white/80 italic'>
+                  {bio}
+                </span>
               </p>
             </div>
           ) : (
