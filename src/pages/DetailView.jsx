@@ -1,15 +1,15 @@
 import React from 'react'
 import HeroSectionViewPage from '#components/HeroSectionViewPage'
 import { useParams } from 'react-router-dom'
-import { useGetMovieTrailerQuery, useGetMoviesByIDQuery, useGetTVShowTrailerQuery, useGetTVShowsByIDQuery, useGetMovieCreditsQuery, useGetTVCreditsQuery } from '#api/tmdbApi'
+import { useGetMovieTrailerQuery, useGetMoviesByIDQuery, useGetTVShowTrailerQuery, useGetTVShowsByIDQuery, useGetMovieCreditsQuery, useGetTVCreditsQuery, useGetSimilarMoviesQuery } from '#api/tmdbApi'
 import Casts from '#components/Casts';
+import CardsSlider from '#components/CardsSlider';
 
 function DetailView() {
   const { type, id } = useParams();
-
   const isMovie = type === 'movie';
   const isTV = type === 'tv';
-
+  
   const selectedId = Number(id);
 
   // Movies Id:
@@ -17,6 +17,10 @@ function DetailView() {
 
   // TV Shows Id:
   const { data: selectedTVData, isLoading: isTVLoading, isError: isTVError, error: tvError } = useGetTVShowsByIDQuery(selectedId);
+
+  // Similar Movies or Shows\
+  const { data: similarMedia } = useGetSimilarMoviesQuery({ media_type: type, media_id: selectedId })
+console.log("Similar:", similarMedia)
 
   // // Movie Trailer:
   const { data: trailerData, isError: isMovieTrailerError, error: movieTrailerError } = useGetMovieTrailerQuery(selectedId);
@@ -61,6 +65,13 @@ function DetailView() {
           isLoading={isMovieCreditsLoading}
           isError={isMovieCreditsError}
           error={movieCreditsErr}
+        />
+
+        <CardsSlider
+        title="Similar Movies"
+        media={similarMedia?.results}
+        mediaType= {type}
+        // btnClickAction={`/${type}`}
         />
       </>
     )
