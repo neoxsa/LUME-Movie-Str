@@ -40,6 +40,11 @@ export const apiSlice = createApi({
             query: (movie_id) => `movie/${movie_id}`
         }),
 
+        // Get Similar Movies Or TV Shows
+        getSimilarMovies: builder.query({
+            query: ({media_type, media_id}) => `${media_type}/${media_id}/similar`
+        }),
+
         // TV Shows Details By ID
         getTVShowsByID: builder.query({
             query: (series_id) => `tv/${series_id}`
@@ -52,7 +57,7 @@ export const apiSlice = createApi({
 
         // TV Shows Trailer Video
         getTVShowTrailer: builder.query({
-            query: ({ series_id }) => `tv/${series_id}/videos`
+            query: (series_id ) => `tv/${series_id}/videos`
         }),
 
         // Credits Movies
@@ -83,5 +88,5 @@ export const apiSlice = createApi({
     })
 })
 
-export const { useGetAllTrendingQuery, useGetDiscoverMoviesQuery, useGetMoviesByIDQuery, useGetTVShowsByIDQuery, useGetMovieTrailerQuery, useGetDiscoverTVShowsQuery, useGetTVShowTrailerQuery, useGetMovieCreditsQuery, useGetTVCreditsQuery, useGetTVEpGroupQuery, useGetSearchResultsQuery, useGetPersonMovieAndTvCreditQuery, useGetPersonDetailsQuery } = apiSlice
+export const { useGetAllTrendingQuery, useGetDiscoverMoviesQuery, useGetMoviesByIDQuery, useGetTVShowsByIDQuery, useGetMovieTrailerQuery, useGetDiscoverTVShowsQuery, useGetTVShowTrailerQuery, useGetMovieCreditsQuery, useGetTVCreditsQuery, useGetTVEpGroupQuery, useGetSearchResultsQuery, useGetPersonMovieAndTvCreditQuery, useGetPersonDetailsQuery, useGetSimilarMoviesQuery } = apiSlice
 
