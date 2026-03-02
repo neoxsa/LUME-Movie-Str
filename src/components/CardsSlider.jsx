@@ -33,7 +33,7 @@ function CardsSlider({
   }, []);
 
   return (
-    <section className="text-white space-y-6 mx-6 md:mx-10 mb-12">
+    <section className="relative text-white space-y-6 mx-6 md:mx-10 mb-12">
       <div className="flex items-center gap-3">
         <div className="w-1 h-8 bg-red-600 rounded-full" />
         <h3 className="text-2xl md:text-3xl font-bold">{title}</h3>
@@ -106,13 +106,13 @@ function CardsSlider({
       <button
         aria-label='Previous button'
         ref={prevButtonRef}
-        className="custom-prev">
+        className="cards-prev">
         <ArrowBigLeftDash className="text-red-400" />
       </button>
       <button
         aria-label='Previous button'
         ref={nextButtonRef}
-        className="custom-next">
+        className="cards-next">
         <ArrowBigRightDash className="text-red-400" />
       </button>
 
