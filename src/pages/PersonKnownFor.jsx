@@ -8,7 +8,7 @@ function PersonKnownFor() {
   const { id } = useParams()
 
   const { data: personData } = useGetPersonDetailsQuery(id);
-
+  console.log("Data:", personData)
   const navigate = useNavigate();
 
   const { data: movieAndTvData } = useGetPersonMovieAndTvCreditQuery(personData?.id || id)
@@ -20,6 +20,8 @@ function PersonKnownFor() {
   const cardHandler = (data) => {
     navigate(`/category/${data?.media_type}/${data?.id}`)
   }
+
+
 
   return (
     <section className='space-y-15'>
@@ -57,11 +59,11 @@ function PersonKnownFor() {
             <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 m-4 xl:m-10'>
               {
                 movieAndTvCredits?.map((data) => (
+                  // console.log("credit", data)
                   <ResultCard
-                    key={data?.id}
-                    image={data.poster_path}
-                    onClick={() => cardHandler(
-                      data)}
+                    key={data?.credit_id || `${data?.id}_${data?.media_type}`}
+                    image={data?.poster_path}
+                    onClick={() => cardHandler(data)}
                     title={data?.title}
                     media_type={data?.media_type}
                     date={data?.release_date || data?.first_air_date}
