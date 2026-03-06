@@ -9,7 +9,7 @@ function DetailView() {
   const { type, id } = useParams();
   const isMovie = type === 'movie';
   const isTV = type === 'tv';
-  
+
   const selectedId = Number(id);
 
   // Movies Id:
@@ -20,7 +20,7 @@ function DetailView() {
 
   // Similar Movies or Shows\
   const { data: similarMedia } = useGetSimilarMoviesQuery({ media_type: type, media_id: selectedId })
-console.log("Similar:", similarMedia)
+  console.log("Similar:", similarMedia)
 
   // // Movie Trailer:
   const { data: trailerData, isError: isMovieTrailerError, error: movieTrailerError } = useGetMovieTrailerQuery(selectedId);
@@ -68,10 +68,9 @@ console.log("Similar:", similarMedia)
         />
 
         <CardsSlider
-        title="Similar Movies"
-        media={similarMedia?.results}
-        mediaType= {type}
-        // btnClickAction={`/${type}`}
+          title="Similar Movies"
+          media={similarMedia?.results}
+          mediaType={type}
         />
       </>
     )
@@ -93,6 +92,11 @@ console.log("Similar:", similarMedia)
           isError={isTvCreditsError}
           error={tvCreditsErr}
         />
+        <CardsSlider
+          title="Similar TV Shows"
+          media={similarMedia?.results}
+          mediaType={type}
+        />
       </>
     )
   } else {
@@ -112,6 +116,11 @@ console.log("Similar:", similarMedia)
           isLoading={isMovieCreditsLoading || isTVCreditsLoading}
           isError={isMovieCreditsError || isTvCreditsError}
           error={movieCreditsErr || tvCreditsErr}
+        />
+        <CardsSlider
+          title="Similar Movies"
+          media={similarMedia?.results}
+          mediaType={type}
         />
       </>
     )
