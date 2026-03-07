@@ -58,8 +58,8 @@ function SearchBar() {
                 type="text"
                 value={searchKey}
                 onChange={(e) => setSearchKey(e.target.value)}
-                placeholder="Search for movies or tv shows..."
-                className="flex-1 outline-none bg-transparent text-white text-sm md:text-base"
+                placeholder="Search movies, TV shows, people..."
+                className="flex-1 outline-none bg-transparent text-white text-sm md:text-base inline-block w-full leading-none"
                 autoFocus
                 aria-label="Search input"
               />
