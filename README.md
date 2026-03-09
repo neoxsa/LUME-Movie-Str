@@ -22,30 +22,30 @@ A small movie browsing web application built with React and Vite. The app consum
 
 ## Quick start
 
-Prerequisites: Node.js 18+ and a package manager (`npm`, `yarn`, or `pnpm`).
+Prerequisites: Node.js 18+ and a package manager (`bun`,`npm`, `yarn`, or `pnpm`).
 
 Install dependencies:
 
 ```bash
-npm install
+bun install
 ```
 
 Run development server (with HMR):
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 Build for production:
 
 ```bash
-npm run build
+bun run build
 ```
 
 Preview the production build locally:
 
 ```bash
-npm run preview
+bun run preview
 ```
 
 ## Environment
@@ -73,7 +73,7 @@ The app reads this token at runtime (see `src/api/tmdbApi.js`), and sends it as 
 This repo includes ESLint configuration. To run linting (if defined in `package.json`):
 
 ```bash
-npm run lint
+bun run lint
 ```
 
 ## Contributing
